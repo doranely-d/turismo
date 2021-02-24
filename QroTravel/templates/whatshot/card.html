@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof card.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof card.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+  .generic-article-map iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .generic-article-content p img {
+    height: auto !important;
+    margin: 0px !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .facebook-this a, .tweet-this a, .mail-this a, .whatsapp-this a { font-weight: bold; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ card.get_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="banner-title white font-bold">{{ card.title }}</h1>
+            <h2 class="text">{{ card.subheading|safe }}</h2>
+            {% if card.button_360_link %}
+            <a href="{{ card.button_360_link }}" target="_blank" class="btn btn-primary">
+              {% if card.button_360_text %}
+              {{ card.button_360_text}}
+              {% else %}
+              {% trans '360 View' %}
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content generic-article">
+
+
+      <div class="generic-article-content">
+        
+        <p class="text">{{ card.subtitle|safe }}</p>
+        <p>
+           {{ card.description|safe }}
+        </p>
+      </div>
+
+      {% if card.card_photos.exists %}
+      <div class="generic-article-carousel-container">
+        <div class="generic-article-carousel owl-carousel">
+          {% for photo in card.card_photos.all %}
+          <div class="slider" style="background-image: url('{{ photo.get_image_url }}');"></div>
+          {% endfor %}
+        </div>
+
+        <div class="generic-article-carousel-controls">
+          <i class="qro-travel-icon-forward go-right"></i>
+          <i class="qro-travel-icon-backward go-left"></i>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="generic-article-contact">
+        <p class="subtitle text-center">{% trans 'Contact data'|upper %}</p>
+
+        <div class="table">
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Location' %}</p>
+            <p>{{ card.address|safe }}</p>
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Contact phones' %}</p>
+            {% if card.phone %}
+            <p>T. {{ card.phone }}</p>
+            {% endif %}
+            {% if card.phone_2 %}
+            <p>T. {{ card.phone_2 }}</p>
+            {% endif %}
+            {% if card.phone_3 %}
+            <p>T. {{ card.phone_3 }}</p>
+            {% endif %}
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'More info' %}</p>
+            {% if card.web_site %}
+            <p style="width: 200px;word-wrap: break-word;"><a href="{{ card.web_site }}" target="_blank" class="a">{{ card.web_site }}</a></p>
+            {% endif %}
+            {% if card.contact_email %}
+            <p><a class="a">{{ card.contact_email }}</a></p>
+            {% endif %}
+            <p>
+              {% if card.facebook_url %}
+              <a href="{{ card.facebook_url }}" target="_blank" class="qro-travel-icon-fb a social-icon"></a>
+              {% endif %}
+              {% if card.twitter_url %}
+              <a href="{{ card.twitter_url }}" target="_blank" class="qro-travel-icon-twitter a social-icon"></a>
+              {% endif %}
+              {% if card.instagram_url %}
+              <a href="{{ card.instagram_url }}" target="_blank" class="qro-travel-icon-instagram a social-icon"></a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% if card.google_maps %}
+      <div class="generic-article-map">
+        {{ card.google_maps|safe }}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  {% if card.card_photos.exists %}
+  var roomCarousel = $('.generic-article-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: false,
+        nav: true,
+        dots: true,
+        autoplay: true,
+        items: 1,
+        mouseDrag: true,
+        touchDrag: true
+    });
+
+    $('.go-left').click(function () {
+        roomCarousel.trigger('prev.owl.carousel');
+    });
+
+    $('.go-right').click(function () {
+        roomCarousel.trigger('next.owl.carousel');
+    });
+    {% endif %}
+
+});
+</script>
+{% endblock %}

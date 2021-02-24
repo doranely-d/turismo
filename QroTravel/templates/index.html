@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block css %}
+<style type="text/css">
+  iframe#twitter-widget-0.twitter-follow-button.twitter-follow-button-rendered {
+    float: right !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+
+  <div class="carousel-banner-container">
+    <div class="carousel-banner owl-carousel">
+      {% if header_banners %}
+      {% for banner in header_banners %}
+      <div class="page-banner slider">
+        <div class="banner-content">
+          <div class="image-container main-banner-image" style="background-image: url('{{ banner.get_banner_image_url }}');">
+            <div class="filter"></div>
+          </div>
+          <div class="banner-title-container container text-center">
+            <div class="table">
+              <div class="table-cell">
+                {% if forloop.first %}
+                <h1 class="white" style="font-size:16px; font-weight:normal;">{% trans 'LATEST IN QUERETARO' %}</h1>
+                {% else %}
+                <p class="white">{% trans 'LATEST IN QUERETARO' %}</p>
+                {% endif %}
+                <p class="banner-title white font-bold">{{ banner.title }}</p>
+
+                {% if banner.link %}
+                  {% if banner.button_image_white and banner.button_image_color %}
+                  <a href="{{ banner.link }}" {% if banner.blank %}target="blank"{% endif %} class="viajemos-icon">
+                    <img class="viajemos-icon-white" src="{{ banner.get_button_image_white_url }}" />
+                    <img class="viajemos-icon-color" src="{{ banner.get_button_image_color_url }}" />
+                  </a>
+                  {% else %}
+                  <a href="{{ banner.link }}" {% if banner.blank %}target="blank"{% endif %} class="btn btn-primary">{% trans 'Read more' %}</a>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <div class="carousel-banner-controls">
+      <div class="container">
+        <i class="qro-travel-icon-forward go-right"></i>
+        <i class="qro-travel-icon-backward go-left"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if CONFIGURATION.discover %}
+<section>
+  <div class="container white-bg">
+    <div class="page-content">
+      <p class="subtitle text-center">{% trans 'Discover Querétaro'|upper %}</p>
+
+      <div class="discover-content">
+        {{ CONFIGURATION.discover|safe }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if inspirations %}
+<section>
+  <div class="container white-bg">
+    <div class="page-content">
+      <p class="subtitle text-center">{% trans 'Inspiration for your journey'|upper %}</p>
+      <div class="row">
+
+        {% for card in inspirations %}
+        <div class="col-sm-4 article-thumbnail">
+          <a href="{{ card.link }}" {% if card.blank %}target="_blank"{% endif %} class="card a">
+            <div class="image" style="background-image: url('{{ card.get_image_url }}');">
+              <img class="hidden" src="{{ card.get_image_url }}" alt="{{ card.image_alt_text }}">
+              <div class="table">
+                <div class="table-cell category-name">
+                  <p class="font-bold white text-center">{{ card.title }}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+      </div>
+      <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- <div class="text-center" style="margin: 30px 0px;">
+      <a class="btn btn-default">Ver más artículos</a>
+    </div> -->
+  </div>
+</section>
+{% endif %}
+
+{% if outstanding_sections %}
+<section>
+  <div class="carousel-banner-container">
+    <div class="categories-carousel owl-carousel">
+      {% for section in outstanding_sections %}
+      <div class="small-banner slider">
+        <div class="banner-content">
+          <div class="image-container main-banner-image" style="background-image: url('{{ section.get_image_url }}');">
+            <div class="filter"></div>
+          </div>
+          <div class="banner-title-container container text-center">
+            <div class="table">
+              <div class="table-cell">
+                <p class="white">{{ section.main_category|upper }}</p>
+                <p class="banner-title white font-bold">{{ section.title }}</p>
+                <a href="{% url 'WhatsHot:landing' section.main_category.id section.main_category.slug %}" class="btn btn-primary">{% trans 'Read more' %}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="carousel-banner-controls categories-carousel-controls">
+      <div class="container">
+        <i class="qro-travel-icon-forward go-right"></i>
+        <i class="qro-travel-icon-backward go-left"></i>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if events %}
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{% trans 'UPCOMING EVENTS IN QUERÉTARO' %}</p>
+
+      <div class="row">
+        {% for event in events %}
+        <div class="col-sm-4 event-card">
+          <a href="{% url 'Events:event' event.id event.slug %}" class="card a">
+            <div class="image" style="background-image: url('{{ event.get_image_url }}');">
+              <img class="hidden" src="{{ event.get_image_url }}" alt="{{ event.image_alt_text }}">
+              <div class="category">
+                {{ event.start_date|date:"d F Y" }}{% if event.start_date != event.end_date %} - {{ event.end_date|date:"d F Y" }}{% endif %}
+              </div>
+            </div>
+            <div class="card-description">
+              <p class="article-title">
+                {{ event.title }}
+              </p>
+              <div class="article-text">
+                <div class="ellipsis">
+                  <div>
+                    {{ event.excerpt }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if regions %}
+<section>
+  <div class="carousel-banner-container">
+    <div class="regions-carousel owl-carousel">
+      <div class="small-banner slider">
+        <div class="banner-content">
+          <div class="image-container main-banner-image" style="background-image: url('{% static 'img/tests/test.jpg' %}');"></div>
+          <div class="banner-title-container container text-center">
+            <div class="table">
+              <div class="table-cell">
+                <p class="white">REGIONES</p>
+                <p class="banner-title white font-bold">Ruta de qarte, queso y vino</p>
+                <a class="btn btn-primary">Leer más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="small-banner slider">
+        <div class="banner-content">
+          <div class="image-container main-banner-image" style="background-image: url('{% static 'img/tests/test.jpg' %}');"></div>
+          <div class="banner-title-container container text-center">
+            <div class="table">
+              <div class="table-cell">
+                <p class="white">REGIONES</p>
+                <p class="banner-title white font-bold">Querétaro metropolitano</p>
+                <a class="btn btn-primary">Leer más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-banner-controls regions-carousel-controls">
+      <div class="container">
+        <i class="qro-travel-icon-forward go-right"></i>
+        <i class="qro-travel-icon-backward go-left"></i>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <div class="row">
+        <div class="col-sm-6 facebook-feed" id="pageContainer">
+          {% if CONFIGURATION.facebook_url %}
+          <div class="fb-page" data-href="{{ CONFIGURATION.facebook_url }}" data-width="500" data-height="380" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="{{ CONFIGURATION.facebook_url }}"><a href="{{ CONFIGURATION.facebook_url }}">Facebook</a></blockquote></div></div>
+          {% endif %}
+        </div>
+        <div class="col-sm-6 twitter-feed">
+          <a class="twitter-timeline" data-lang="es" data-height="400" data-dnt="true" href="https://twitter.com/QroTravel?ref_src=twsrc%5Etfw">Tweets by QroTravel</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+        </div>
+      </div>
+
+      {% if instagrams %}
+      <div class="instagram-feed">
+        <div class="row feed-title">
+          <div class="col-sm-12">
+            <p><span class="blue">Instagram</span> @<a href="{{ CONFIGURATION.instagram_url }}" class="social-link" target="_blank">{{ instagrams.first.title }}</a></p>
+          </div>
+        </div>
+
+        <div class="row instagram-row">
+          {% for photo in instagrams %}
+          <div class="col-sm-3">
+            <a target="_blank" {% if photo.blank %}target="_blank"{% endif %} href="{{ photo.link }}">
+              <div style="background-image: url('{{ photo.link }}media/');" class="instagram-image">
+                <div class="overlay">
+                  <div class="table">
+                    <div class="table-cell">
+                      <i class="qro-travel-icon-instagram text-center"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        {% with instagrams|first as instagram %}
+        <div class="row instagram-row-mobile">
+          <div class="col-xs-12 instagram-thumbnail">
+            <a {% if instagram.blank %}target="_blank"{% endif %} href="{{ instagram.link }}">
+              <div style="background-image: url('{{ instagram.link }});" class="instagram-image">
+                <div class="overlay">
+                  <div class="table">
+                    <div class="table-cell">
+                      <i class="qro-travel-icon-instagram text-center"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endwith %}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var orientationChange = false;
+var is_mobile = false;
+var resize_first_time = false;
+
+$(document).ready(function() {
+
+  var bannerCarousel = $('.carousel-banner').owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: false,
+        nav: true,
+        dots: true,
+        autoplay: true,
+        items: 1,
+        mouseDrag: true,
+        touchDrag: true
+    });
+
+    $('.go-left').click(function () {
+        bannerCarousel.trigger('prev.owl.carousel');
+    });
+
+    $('.go-right').click(function () {
+        bannerCarousel.trigger('next.owl.carousel');
+    });
+
+    // Categories carousel
+    {% if outstanding_sections %}
+    var categoriesCarousel = $('.categories-carousel').owlCarousel({
+      loop: true,
+      margin: 0,
+      responsiveClass: false,
+      nav: true,
+      dots: true,
+      autoplay: true,
+      items: 1,
+      mouseDrag: true,
+      touchDrag: true
+    });
+
+    $('.categories-carousel-controls .go-left').click(function () {
+      categoriesCarousel.trigger('prev.owl.carousel');
+    });
+
+    $('.categories-carousel-controls .go-right').click(function () {
+      categoriesCarousel.trigger('next.owl.carousel');
+    });
+    {% endif %}
+
+    // Regions carousel
+    var regionsCarousel = $('.regions-carousel').owlCarousel({
+      loop: true,
+      margin: 0,
+      responsiveClass: false,
+      nav: true,
+      dots: true,
+      autoplay: true,
+      items: 1,
+      mouseDrag: true,
+      touchDrag: true
+    });
+
+    $('.regions-carousel-controls .go-left').click(function () {
+      regionsCarousel.trigger('prev.owl.carousel');
+    });
+
+    $('.regions-carousel-controls .go-right').click(function () {
+      regionsCarousel.trigger('next.owl.carousel');
+    });
+
+    {% if CONFIGURATION.facebook_url %}
+    $( window ).resize(function() {
+      resizeFbComponent();
+    });
+    {% endif %}
+
+});
+window.addEventListener('orientationchange', doOnOrientationChange);
+
+function resizeFbComponent() {
+  if( $('#some-element').css('display')=='none') {
+    is_mobile = true;
+  }else{
+    is_mobile = false;
+  }
+  if (resize_first_time == false && is_mobile == true){
+    var container_width = $('#pageContainer').width();
+    $('#pageContainer').html('<div class="fb-page" data-href="{{ CONFIGURATION.facebook_url }}" data-width="'+container_width+'" data-height="380" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="{{ CONFIGURATION.facebook_url }}"><a href="{{ CONFIGURATION.facebook_url }}">Facebook</a></blockquote></div></div>');
+    FB.XFBML.parse();
+    resize_first_time = true;
+  }else if(is_mobile == false){
+    var container_width = $('#pageContainer').width();
+    $('#pageContainer').html('<div class="fb-page" data-href="{{ CONFIGURATION.facebook_url }}" data-width="'+container_width+'" data-height="380" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="{{ CONFIGURATION.facebook_url }}"><a href="{{ CONFIGURATION.facebook_url }}">Facebook</a></blockquote></div></div>');
+    FB.XFBML.parse();
+  }
+}
+
+function doOnOrientationChange() {
+  if (screen.height > screen.width) {
+     orientationChange = true;
+     resize_first_time = false;
+     resizeFbComponent();
+  } else {
+     orientationChange = true;
+     resize_first_time = false;
+     resizeFbComponent();
+  }
+}
+</script>
+{% endblock %}

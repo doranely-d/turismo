@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ CONFIGURATION.get_search_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="banner-title white font-bold">{{ CONFIGURATION.search_title }}</h1>
+            <h2 class="white banner-subtitle">{{ CONFIGURATION.search_subtitle|upper }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <div class="search-tool">
+        <form action="{% url 'WhatsHot:search' %}" method="get" id="search-form">
+          <input id="search" name="query" style="width:100%;" placeholder="Ingresa tu búsqueda" value="{{ query }}"/>
+          <input id="page" name="page" style="display: none;" value="{{ page }}"/>
+        </form>
+        <a href="javascript: submitform()" class="qro-travel-icon-search search-icon"></a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container white-bg search-categories">
+    <div class="page-content">
+      <ul>
+        <li {% if not model_str and not category_id %}class="active"{% endif %}><a class="search-category filter {% if not model_str and not category_id %}active{% endif %}" href="{% url 'WhatsHot:search' %}">{% trans 'All' %}</a></li>
+        <li {% if model_str == 'Event' %}class="active"{% endif %}><a class="search-category filter {% if model_str == 'Event' %}active{% endif %}" href="{% url 'WhatsHot:search_event' %}">{% trans 'Events' %}</a></li>
+        {% for category in CATEGORIES %}
+        <li {% if category_id == category.id %}class="active"{% endif %}><a class="search-category filter {% if category_id == category.id %}active{% endif %}" href="{% url 'WhatsHot:search_category' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+        <li {% if model_str == 'Post' %}class="active"{% endif %}><a class="search-category filter {% if model_str == 'Post' %}active{% endif %}" href="{% url 'WhatsHot:search_post' %}">{% trans 'Blog' %}</a></li>
+        <li {% if model_str == 'Section' %}class="active"{% endif %}><a class="search-category filter {% if model_str == 'Section' %}active{% endif %}" href="{% url 'WhatsHot:search_section' %}">{% trans 'Regions' %}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container white-bg">
+    <div class="second-page-content">
+
+      {% if list_items %}
+      {% for item in list_items %}
+      <div class="search-result">
+        <a href="{{ item.absolute_url }}" class="page-title text-left font-bold" style="margin-bottom: 15px;">{{ item.get_search_title|safe }}</a>
+        <p class="category font-bold" style="margin-bottom: 15px;">{{ item.get_search_category }}</p>
+        <div class="description" style="margin-bottom: 15px;">
+          <div class="ellipsis">
+            <div>
+              {{ item.get_search_description|safe }}
+            </div>
+          </div>
+        </div>
+        {% if not forloop.last %}
+        <div class="separator"></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% else %}
+      No hay resultados.
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="container white-bg search-categories">
+    <div class="page-content" style="position:relative;">
+      <ul>
+        {% for r in r_pages %}
+        <li class="page-num {% if page == r %}active{% endif %}"><a class="search-category page" data-page="{{ r }}" href="?page={{ r }}">{{ r }}</a></li>
+        {% endfor %}
+      </ul>
+      {% if list_items.has_previous %}
+      <a href="?page={{ page|add:'-1' }}" class="search-category page navigation qro-travel-icon-backward" data-page="{{ page|add:'-1' }}" style="position:absolute; right:120px; top:10px; height: 32px;"></a>
+      {% endif %}
+      {% if list_items.has_next %}
+      <a href="?page={{ page|add:'1' }}" class="search-category page navigation qro-travel-icon-forward" data-page="{{ page|add:'1' }}" style="position:absolute; right:80px; top:10px; height: 32px;"></a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('.search-category').click(function(evt){
+    evt.preventDefault();
+    var href = '';
+    if($(this).hasClass('filter')){
+      href = $(this).attr('href');
+    }else{
+      href = $('.search-category.active').attr('href');
+    }
+
+    if ($(this).hasClass('page') == true){
+      $('#page').val($(this).data('page'))
+    }else{
+      $('#page').val(1);
+    }
+    $('#search-form').attr('action', href).submit();
+  });
+
+  $('#search').keypress(function(event) {
+      if (event.keyCode == 13 || event.which == 13) {
+          submitform();
+      }
+  });
+
+});
+
+function submitform() {
+  var url = $('search-category.active').attr('href');
+  $('#search-form').attr('action', url).submit();
+}
+
+</script>
+{% endblock %}

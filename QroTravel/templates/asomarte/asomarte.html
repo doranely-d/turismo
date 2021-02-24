@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof configuration.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof configuration.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ configuration.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">ASOMARTE</h1>
+            <h2 class="banner-title white font-bold">{{ configuration.title }}</h2>
+            <h3 class="text">{{ configuration.excerpt|upper }}</h3>
+            <a href="{{ configuration.web_site }}" target="_blank" class="btn btn-primary">{% trans 'Go to website' %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content">
+      <div class="row asomarte">
+        <div class="col-sm-8">
+          <p class="subtitle gray-dark">{{ configuration.subtitle }}</p>
+          <div>
+            {{ configuration.description|safe }}
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="magazine-render" style="background-image: url('{{ configuration.get_magazine_image_url }}')">
+            <img class="hidden" src="{{ configuration.get_magazine_image_url }}" alt="{{ configuration.magazine_image_alt_text }}">
+          </div>
+          <a href="{{ configuration.magazine_url }}" target="_blank" class="btn btn-primary">{% trans 'Read the digital edition' %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if videos %}
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{% trans 'Recently in Asomarte TV' %}</p>
+
+      <div class="row">
+        {% for video in videos %}
+        <div class="col-sm-4 blog-card">
+          <a class="card a" {% if video.blank %}target="_blank"{% endif %} href="{{ video.link }}">
+            <div class="image" style="background-image: url('{{ video.get_image_url }}');">
+              <img class="hidden" src="{{ video.get_image_url }}" alt="{{ video.image_alt_text }}">
+            </div>
+            <div class="card-description">
+              <p class="article-title">
+                {{ video.title }}
+              </p>
+              <div class="article-text">
+                <div class="ellipsis">
+                  <div>
+                    {{ video.excerpt }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load configuration_tags %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof contact.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof contact.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+  .generic-article-map iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ contact.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h2 class="white banner-subtitle">{% trans 'Contact'|upper %}</h2>
+            <h1 class="banner-title white font-bold">{{ contact.title }}</h1>
+            <p class="text">{{ contact.excerpt|upper }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content generic-article">
+
+      <p class="subtitle text-center">SECRETARÍA DE TURISMO DEL ESTADO DE QUERÉTARO</p>
+
+      <div class="generic-article-content">
+
+        <img src="{% static 'img/qroTravel.svg' %}" style="margin-bottom: 30px;" />
+
+        <p>
+           {{ contact.description|safe }}
+        </p>
+      </div>
+
+      <div class="generic-article-contact">
+        <p class="subtitle text-center">{% trans 'Contact data'|upper %}</p>
+
+        <div class="table">
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Location' %}</p>
+            <p>{{ contact.address|safe }}</p>
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Contact phones' %}</p>
+            {% if contact.phone_1 %}
+            <p>T. {{ contact.phone_1 }}</p>
+            {% endif %}
+            {% if contact.phone_2 %}
+            <p>T. {{ contact.phone_2 }}</p>
+            {% endif %}
+            {% if contact.phone_3 %}
+            <p>T. {{ contact.phone_3 }}</p>
+            {% endif %}
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Follow this site' %}</p>
+            {% if contact.web_site %}
+            <p><a href="{{ contact.web_site }}" class="a">{{ contact.web_site }}</a></p>
+            {% endif %}
+            {% if contact.mail %}
+            <p><a class="a">{{ contact.mail }}</a></p>
+            {% endif %}
+            <p>
+              {% if contact.facebook_url %}
+              <a href="{{ contact.facebook_url}}" target="_blank" class="qro-travel-icon-fb a social-icon"></a>
+              {% endif %}
+              {% if contact.twitter_url %}
+              <a href="{{ contact.twitter_url}}" target="_blank" class="qro-travel-icon-twitter a social-icon"></a>
+              {% endif %}
+              {% if contact.instagram_url %}
+              <a href="{{ contact.instagram_url }}" target="_blank" class="qro-travel-icon-instagram a social-icon"></a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% if contact.google_maps %}
+      <div class="generic-article-map">
+        {{ contact.google_maps|safe }}
+      </div>
+      {% endif %}
+
+      {% if qs %}
+      <p class="page-title text-left">
+        Teléfonos de interés
+      </p>
+      {% endif %}
+
+      {% for q in qs %}
+      <div class="interest-phones-container">
+        <p class="font-bold category">{{ q.name }}</p>
+        <div class="row">
+          {% for contact in q.contacts.all %}
+          <div class="col-sm-3">
+            <p class="font-bold">{{ contact.name }}</p>
+            {% if contact.phone %}
+            <p><a href="tel:{{ contact.phone|only_numbers }}">T. {{ contact.phone }}</a></p>
+            {% endif %}
+            {% if contact.toll_free %}
+            <p><a href="tel:{{ contact.toll_free|only_numbers }}">T. {{ contact.toll_free }}</a></p>
+            {% endif %}
+            {% if contact.web_site %}
+            <a href="{{ contact.web_site }}" target="_blank" class="a">{{ contact.web_site|no_protocol }}</a>
+            {% endif %}
+          </div>
+          {% if forloop.counter|divisibleby:"4" %}
+        </div>
+        <div class="row">
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+      <p class="subtitle text-center">{% trans 'Need more information? Leave us a message'|upper %}</p>
+
+      <form action="{% url 'CMS:contact' %}" method="post" id="contact-form">
+
+        {% if valid %}
+        <h4 style="color: green;">{% trans 'Message delivered.' %}</h4>
+        {% endif %}
+        {% if form.errors %}
+        <h4 style="color: red;">{% trans 'Please verify your information.' %}</h4>
+        {% endif %}
+
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td class="label">{% trans 'Name(s)'|upper %}</td>
+            <td class="field">
+              <label for="{{ form.name.name }}" class="label-mobile">{% trans 'Name(s)'|upper %}</label>
+              <input type="text" placeholder="{% trans 'Name(s)'|upper %}" name="{{ form.name.name }}" {% if form.name.value %}value="{{ form.name.value }}"{% endif %} required>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">{% trans 'Email'|upper %}</td>
+            <td class="field">
+              <label for="{{ form.email.name }}" class="label-mobile">{% trans 'Email'|upper %}</label>
+              <input type="text" placeholder="{% trans 'Email'|upper %}" name="{{ form.email.name }}" {% if form.email.value %}value="{{ form.email.value }}"{% endif %} required>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">{% trans 'Subject'|upper %}</td>
+            <td class="field">
+              <label for="{{ form.subject.name }}" class="label-mobile">{% trans 'Subject'|upper %}</label>
+              <input type="text" placeholder="{% trans 'Subject'|upper %}" name="{{ form.subject.name }}" {% if form.subject.value %}value="{{ form.subject.value }}"{% endif %} required>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">
+              {% trans 'Message'|upper %}
+              <button class="btn btn-default" type="submit">{% trans 'Send' %}</button>
+            </td>
+            <td class="field">
+              <label for="{{ form.message.name }}" class="label-mobile">{% trans 'Message'|upper %}</label>
+              <textarea rows="8" cols="50" placeholder="{% trans 'Message'|upper %}" name="{{ form.message.name }}" {% if form.message.value %}value="{{ form.message.value }}"{% endif %} required></textarea>
+              <button class="btn btn-default contact-form-btn-mobile" type="submit">{% trans 'Send' %}</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

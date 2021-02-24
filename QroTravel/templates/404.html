@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ CONFIGURATION.get_error_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">{% trans 'ERROR 404' %}</h1>
+            <h2 class="banner-title white font-bold">{% trans 'The content that you are looking for does not exists.' %}</h2>
+            {% blocktrans %}
+            <p class="text">
+              DON'T WORRY, YOU CAN GO BACK TO THE <a href="javascript:history.back()">LAST PAGE</a> OR TO THE <a href="/">HOME PAGE</a>.
+            </p>
+            {% endblocktrans %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

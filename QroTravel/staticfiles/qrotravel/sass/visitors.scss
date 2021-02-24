@@ -1,0 +1,238 @@
+/*
+* Specific styles for visitors related pages
+*/
+
+// VISITORS GUIDE
+.visitors-section {
+  background-color: $dark;
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  position: relative;
+
+  .full-height {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    .row {
+      height: 420px;
+    }
+
+    .full-height-content {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .full-height-img {
+      height: 100%;
+      .img {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+  }
+
+  .filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(black, 0.5);
+  }
+
+  .top-description {
+    border-bottom: 1px dotted $white;
+  }
+
+  .top-description, .bottom-description {
+    padding: 15px 0px;
+
+    p {
+      margin: 15px 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0px;
+    }
+
+    p:first-child {
+      margin-top: 0px;
+    }
+
+    p.section-description {
+      margin-bottom: 30px;
+      margin-top: 5px;
+    }
+  }
+
+  .selector {
+    padding: 15px 0px;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+      }
+    }
+  }
+
+  .selector a {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+
+  .selector a.active {
+    color: $white;
+  }
+
+  .weather-info {
+    min-height: 200px;
+    text-align: center;
+
+    .icon {
+      font-size: 140px;
+      color: $yellow;
+      padding-top: 20px;
+      display: inline-block;
+
+      i {
+        display: block;
+        margin: auto 0;
+      }
+    }
+
+    .temperature {
+      float: right;
+      text-align: center;
+      font-weight: bold;
+
+      .top {
+        border-bottom: 1px solid $gray-light;
+      }
+    }
+  }
+
+  .downloads {
+    margin-top: 60px;
+
+    .icon {
+      font-size: 24px;
+      margin-right: 15px;
+      display: inline-block;
+    }
+
+    .btn {
+      margin-bottom: 15px;
+    }
+  }
+
+  .section-list {
+    padding: 30px 0px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin: 10px 0px;
+      }
+
+      li a {
+        color: white;
+
+        i {
+          margin-right: 15px;
+          font-size: 10px;
+        }
+      }
+
+      li a:hover {
+        color: $pink;
+      }
+    }
+  }
+
+  .faq-section {
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+
+  .additional-facts {
+    text-align: right;
+    font-family: 'KievitOT-bold';
+
+    ul {
+      list-style: none;
+    }
+  }
+}
+// END VISITORS GUIDE
+
+// WHAT TO DO
+.activity-container {
+  font-size: 14px;
+
+  .row {
+    height: 280px;
+    border-top: 1px solid $gray-light;
+
+    div[class*="col-"] {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .description {
+    border-right: 1px solid $gray-light;
+  }
+
+  .info p {
+    margin: 15px 0;
+  }
+}
+// END WHAT TO DO
+
+
+/* MEDIA QUERIES */
+/* Extra small devices (up to 768px ) */
+@media only screen and (max-width: $screen-md-min) {
+
+  .activity-container {
+    text-align: center;
+
+    .row {
+      height: auto;
+      border: none;
+    }
+
+    .image {
+      height: 280px !important;
+    }
+
+    .info {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $gray-light;
+    }
+
+    .description {
+      padding-bottom: 15px;
+      border-right: none;
+    }
+  }
+
+}
+
+/* Generic small to large devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+
+}

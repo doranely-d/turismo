@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof instance.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof instance.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+  .filter-group li label {
+    font-family: 'KievitOT-regular';
+    font-weight: normal !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ instance.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="banner-title white font-bold">{{ instance.title }}</h1>
+            <h2 class="text">{{ instance.description }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="filters-wraper {% if not filter_form %}hidden{% endif %}">
+  <div class="container">
+    <div class="page-content">
+      <a class="filter-toggle gray-medium subtitle" data-toggle="collapse" data-target="#filters-container"><i class="qro-travel-icon-filter"></i>{% trans 'Search Filters'|upper %}</a>
+      <div id="filters-container" class="collapse filters-container">
+        <form action="{{ href }}" method="post" id="filter_form">
+          {% csrf_token %}
+          {% for field in filter_form.visible_fields %}
+          <div class="col">
+            <ul class="filter-group">
+              <li class="filter-category font-bold">
+                {{ field.label }}
+              </li>
+              {{ field }}
+            </ul>
+          </div>
+          {% endfor %}
+
+          <div class="clear-filters">
+            <a class="a"><i class="qro-travel-icon-close"></i>{% trans 'Clear Filters'|upper %}</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <div id="cards-container">
+        {% include 'whatshot/ajax_what_to_do.html' %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var replace = false;
+
+    function callback() {
+      $('a.next-page').click(function(evt) {
+        evt.preventDefault();
+        replace = false;
+        $(this).addClass('disabled');
+        $('#filter_form').attr('action', $(this).attr('href'));
+        $('#filter_form').submit();
+      })
+    }
+
+
+    $('.clear-filters a').click(function(evt) {
+      evt.preventDefault();
+      $('.filter-group input').attr('checked', false);
+      replace = true;
+      $('#filter_form').attr('action', '');
+      $('#filter_form').submit();
+    })
+    })
+
+    $('.filter-group input').change(function() {
+      replace = true;
+      $('#filter_form').attr('action', '');
+      $('#filter_form').submit();
+    });
+
+    $('#filter_form').submit(function() {
+      $.post($(this).attr('action'), $(this).serialize(), function(data) {
+        if (replace) {
+          $('#cards-container').html(data);
+        } else {
+          $('#ajax-results').replaceWith(data);
+        }
+        callback();
+      });
+      return false;
+    });
+
+    callback();
+  });
+</script>
+{% endblock %}

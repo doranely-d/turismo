@@ -1,0 +1,14 @@
+.asomarte {
+  border-bottom: 1px solid $gray-light;
+  padding-bottom: 60px;
+
+  .magazine-render {
+    background-color: $gray-light;
+    height: 300px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+  }
+}

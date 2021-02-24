@@ -1,0 +1,121 @@
+/*
+* Faqs page specific styles
+*/
+.faqs {
+
+  .faqs-header {
+    border-bottom: 1px solid $gray-light;
+  }
+
+  .question {
+    font-family: 'KievitOT-bold';
+    color: $gray-dark;
+    margin-bottom: 5px;
+  }
+
+  .answer {
+    font-size: 14px;
+  }
+
+  .row {
+    margin: 15px 0px;
+
+    div:first-child {
+      padding-left: 0px;
+    }
+
+    div:last-child {
+      padding-right: 0px;
+    }
+  }
+}
+
+#contact-form {
+  table {
+    width: 100%;
+
+    .label {
+      font-family: 'KievitOT-bold';
+      position: relative;
+
+      button {
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        width: 90%;
+      }
+    }
+
+    .label-mobile {
+      text-align: center;
+      width: 100%;
+    }
+
+    .contact-form-btn-mobile {
+      display: block;
+      margin: 0 auto;
+      margin-top: 15px;
+    }
+
+    .field {
+      input, textarea {
+        width: 100%;
+        margin: 0px;
+      }
+    }
+
+    td {
+      padding: 5px 0px;
+      vertical-align: top;
+    }
+  }
+}
+
+/* MEDIA QUERIES */
+/* Extra small devices (up to 768px ) */
+@media only screen and (max-width: $screen-md-min) {
+
+  #contact-form {
+    table {
+      .label {
+        display: none;
+      }
+    }
+  }
+
+  .faqs {
+    .row {
+      margin: 0px;
+
+      div {
+        margin-bottom: 15px;
+      }
+
+      div:first-child {
+        padding-left: 15px;
+      }
+
+      div:last-child {
+        padding-right: 15px;
+      }
+    }
+  }
+
+}
+
+/* Generic small to large devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+
+  #contact-form {
+    table {
+      .label-mobile {
+        display: none;
+      }
+
+      .contact-form-btn-mobile {
+        display: none;
+      }
+    }
+  }
+
+}

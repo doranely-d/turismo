@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load configuration_tags %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof configuration.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof configuration.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ configuration.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container  text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">{% trans 'Events'|upper %}</h1>
+            <h2 class="banner-title white font-bold">{{ configuration.title }}</h2>
+            <h3 class="text">{{ configuration.excerpt|upper }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="">
+  <div class="container month-indicators">
+    <div class="page-content">
+      <ul>
+        <li {% if all_events %}class="active"{% endif %}><a href="{% url 'Events:landing' %}?all_events=1">{% trans 'All' %}</a></li>
+        <li><a href="{% url 'Events:month_landing' relevant_date_before.year relevant_date_before.month|zfill:'2' %}">{{ relevant_date_before|date:"M" }}</a></li>
+        <li>{{ relevant_date|date:"M" }}</li>
+        <li><a href="{% url 'Events:month_landing' relevant_date_after.year relevant_date_after.month|zfill:'2' %}">{{ relevant_date_after|date:"M" }}</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="filters-wraper">
+  <div class="container">
+    <div class="page-content">
+      <a class="filter-toggle gray-medium subtitle" data-toggle="collapse" data-target="#filters-container"><i class="qro-travel-icon-filter"></i>{% trans 'Search Filters'|upper %}</a>
+      <div id="filters-container" class="collapse filters-container">
+
+        <form action="" method="post" id="filter_form">
+          {% csrf_token %}
+          <div class="col">
+            <ul class="filter-group">
+              {% for category in categories %}
+              <li class="filter-category">
+                <label for="id_category_{{ category.id }}">
+                  <input class="filter-check" id="id_category_{{ category.id }}" name="category" value="{{ category.id }}" type="checkbox">  {{ category.name|title }}
+                </label>
+              </li>
+              {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="filter-group">
+              {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="clear-filters">
+            <a class="a"><i class="qro-travel-icon-close"></i>{% trans 'Clear Filters'|upper %}</a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{% trans 'Next events in Querétaro'|upper %}</p>
+
+      <div id="cards-container">
+        {% include 'events/ajax_calendar.html' %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var replace = false;
+
+    function callback() {
+      $('a.next-page').click(function(evt) {
+        evt.preventDefault();
+        replace = false;
+        $(this).addClass('disabled');
+        $('#filter_form').attr('action', $(this).attr('href'));
+        $('#filter_form').submit();
+      })
+    }
+
+    $('.clear-filters a').click(function(evt) {
+      evt.preventDefault();
+      $('.filter-group input').attr('checked', false);
+      replace = true;
+      $('#filter_form').attr('action', '');
+      $('#filter_form').submit();
+    })
+
+    $('.filter-group input').change(function() {
+      replace = true;
+      $('#filter_form').attr('action', '');
+      $('#filter_form').submit();
+    });
+
+    $('#filter_form').submit(function() {
+      $.post($(this).attr('action'), $(this).serialize(), function(data) {
+        if (replace) {
+          $('#cards-container').html(data);
+        } else {
+          $('#ajax-results').replaceWith(data);
+        }
+        callback();
+      });
+      return false;
+    });
+
+    callback();
+  });
+</script>
+{% endblock %}

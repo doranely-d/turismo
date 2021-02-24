@@ -1,0 +1,1595 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 16:52-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: Asomarte/admin.py:17 Blog/admin.py:18 CMS/admin.py:16
+#: Configuration/admin.py:17 Events/admin.py:40 FAQ/admin.py:17
+#: Regions/admin.py:66 Regions/admin.py:95
+msgid "General Data"
+msgstr "Données generales"
+
+#: Asomarte/admin.py:27
+msgid "Extra"
+msgstr "Extra"
+
+#: Asomarte/admin.py:34
+msgid "Magazine"
+msgstr "Magazine"
+
+#: Asomarte/apps.py:9 templates/base.html:182 templates/base.html:344
+msgid "Asomarte"
+msgstr "Asomarte"
+
+#: Asomarte/models.py:14 Asomarte/models.py:45 Blog/models.py:69
+#: Events/models.py:31 Events/models.py:52 Menus/models.py:39
+#: Menus/models.py:59 WhatsHot/models.py:16 WhatsHot/models.py:185
+#: WhatsHot/models.py:216
+msgid "title"
+msgstr "titre"
+
+#: Asomarte/models.py:15 Blog/models.py:71 CMS/models.py:52 Events/models.py:32
+#: FAQ/models.py:36 Gastronomy/models.py:19 Regions/models.py:20
+#: Visitor/models.py:79 WhatsHot/models.py:18 WhatsHot/models.py:218
+msgid "sub title"
+msgstr "sous-titre"
+
+#: Asomarte/models.py:16 Blog/models.py:72 Events/models.py:55
+#: Regions/models.py:117 WhatsHot/models.py:21
+msgid "excerpt"
+msgstr "extrait"
+
+#: Asomarte/models.py:17 Blog/models.py:14 WhatsHot/models.py:26
+#: WhatsHot/models.py:186
+msgid "description"
+msgstr "description"
+
+#: Asomarte/models.py:18 Blog/models.py:21 Blog/models.py:75
+#: Events/models.py:33 Events/models.py:60 WhatsHot/models.py:187
+#: WhatsHot/models.py:231
+msgid "banner image"
+msgstr "bannière image"
+
+#: Asomarte/models.py:19 CMS/models.py:35
+msgid "web site"
+msgstr "site Web"
+
+#: Asomarte/models.py:20
+msgid "magazine image"
+msgstr "image de magazine"
+
+#: Asomarte/models.py:21
+msgid "magazine url"
+msgstr "magazine url"
+
+#: Asomarte/models.py:27 Blog/models.py:61 Events/models.py:39
+#: Events/models.py:43 FAQ/models.py:43
+msgid "Configuration"
+msgstr "Configuration"
+
+#: Asomarte/models.py:46 CMS/models.py:84 CMS/models.py:111
+#: Gastronomy/models.py:60 Regions/models.py:135 SocialAccounts/models.py:100
+#: WhatsHot/models.py:45
+msgid "Link"
+msgstr "Lien"
+
+#: Asomarte/models.py:48 CMS/models.py:86 CMS/models.py:113
+#: Gastronomy/models.py:62 Regions/models.py:137 SocialAccounts/models.py:102
+#: Visitor/models.py:124 WhatsHot/models.py:47
+msgid "Target Blank"
+msgstr "Cible _blank"
+
+#: Asomarte/models.py:49 CMS/models.py:87 CMS/models.py:114
+#: Gastronomy/models.py:63 Regions/models.py:138 SocialAccounts/models.py:103
+#: Visitor/models.py:125 WhatsHot/models.py:48
+msgid "Open link in another tab"
+msgstr "Ouvrir le lien dans un autre onglet"
+
+#: Asomarte/models.py:51 Gastronomy/models.py:53 Visitor/models.py:115
+msgid "Excerpt"
+msgstr "Extrait"
+
+#: Asomarte/models.py:52 CMS/models.py:89 SocialAccounts/models.py:98
+#: Visitor/models.py:155 Visitor/models.py:224
+msgid "Image"
+msgstr "Image"
+
+#: Asomarte/models.py:53 Blog/models.py:83 CMS/models.py:90 Events/models.py:73
+#: Regions/models.py:143 SocialAccounts/models.py:111 WhatsHot/models.py:74
+#: WhatsHot/models.py:228
+msgid "Created"
+msgstr "Créé"
+
+#: Asomarte/models.py:59
+msgid "Video"
+msgstr "Vidéo"
+
+#: Asomarte/models.py:60
+msgid "Videos"
+msgstr "Vidéos"
+
+#: Blog/apps.py:9 templates/base.html:185 templates/base.html:349
+#: templates/blog/category.html:15 templates/search/results.html:47
+msgid "Blog"
+msgstr "Blog"
+
+#: Blog/models.py:13 CMS/forms.py:11 CMS/models.py:14 CMS/models.py:32
+#: Events/models.py:14 FAQ/models.py:14 Menus/models.py:15
+#: WhatsHot/models.py:147 WhatsHot/models.py:166 WhatsHot/models.py:183
+#: WhatsHot/models.py:267
+msgid "name"
+msgstr "nom"
+
+#: Blog/models.py:15 Blog/models.py:70 Events/models.py:53 FAQ/models.py:15
+#: Regions/models.py:61 Regions/models.py:110 WhatsHot/models.py:17
+#: WhatsHot/models.py:184 WhatsHot/models.py:217
+msgid "slug"
+msgstr "slug"
+
+#: Blog/models.py:17
+msgid "thumbnail image"
+msgstr "vignette"
+
+#: Blog/models.py:29 CMS/models.py:21 Events/models.py:21 FAQ/models.py:21
+#: FAQ/models.py:60 WhatsHot/models.py:197
+msgid "Category"
+msgstr "Catégorie"
+
+#: Blog/models.py:30 CMS/models.py:22 Events/models.py:22 FAQ/models.py:22
+#: WhatsHot/models.py:198
+msgid "Categories"
+msgstr "Catégories"
+
+#: Blog/models.py:52
+#, fuzzy
+#| msgid "Outstanding"
+msgid "Outstanding Post"
+msgstr "Exceptionnel"
+
+#: Blog/models.py:54
+msgid "Header of Featured Articles"
+msgstr ""
+
+#: Blog/models.py:55
+#, fuzzy
+#| msgid "Categories"
+msgid "Categories Header"
+msgstr "Catégories"
+
+#: Blog/models.py:73 Events/models.py:56 Regions/models.py:120
+msgid "content"
+msgstr "contenu"
+
+#: Blog/models.py:77
+#, fuzzy
+#| msgid "Content"
+msgid "Content Image"
+msgstr "Contenu"
+
+#: Blog/models.py:79 CMS/models.py:31 Events/models.py:72 WhatsHot/models.py:66
+#: WhatsHot/models.py:225
+msgid "category"
+msgstr "Catégorie"
+
+#: Blog/models.py:81
+msgid "Featured"
+msgstr ""
+
+#: Blog/models.py:82
+msgid "publish date"
+msgstr "date de publication"
+
+#: Blog/models.py:89
+msgid "Article"
+msgstr ""
+
+#: Blog/models.py:90
+#, fuzzy
+#| msgid "Recent articles"
+msgid "Articles"
+msgstr "Articles récents"
+
+#: Blog/urls.py:8
+msgid "^blog/$"
+msgstr "^blog/$"
+
+#: Blog/urls.py:9
+msgid "^blog/(?P<category_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^blog/(?P<category_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: Blog/urls.py:10
+msgid "^blog/post/(?P<post_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^blog/post/(?P<post_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: CMS/admin.py:26
+msgid "Contact Data"
+msgstr "Données de contact"
+
+#: CMS/apps.py:9
+#, fuzzy
+#| msgid "Contact Email"
+msgid "Contact Information"
+msgstr "Email du contact"
+
+#: CMS/forms.py:12
+msgid "email"
+msgstr "email"
+
+#: CMS/forms.py:13
+msgid "subject"
+msgstr "assujettir"
+
+#: CMS/forms.py:14
+msgid "message"
+msgstr "message"
+
+#: CMS/models.py:15 Events/models.py:115 Gastronomy/models.py:57
+#: Menus/models.py:18 Menus/models.py:41 Menus/models.py:62
+#: Regions/models.py:141 Regions/models.py:194 Visitor/models.py:119
+#: WhatsHot/models.py:130
+msgid "order"
+msgstr "commande"
+
+#: CMS/models.py:33
+#, fuzzy
+#| msgid "Phone"
+msgid "phone"
+msgstr "Téléphone"
+
+#: CMS/models.py:34
+msgid "toll free"
+msgstr ""
+
+#: CMS/models.py:41
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Group"
+msgstr "Contact"
+
+#: CMS/models.py:42
+#, fuzzy
+#| msgid "Contact"
+msgid "Contacts Group"
+msgstr "Contact"
+
+#: CMS/models.py:51 CMS/models.py:83 CMS/models.py:110 FAQ/models.py:35
+#: FAQ/models.py:56 Gastronomy/models.py:18 Gastronomy/models.py:51
+#: Regions/models.py:19 Regions/models.py:60 Regions/models.py:109
+#: SocialAccounts/models.py:94 Visitor/models.py:23 Visitor/models.py:78
+#: Visitor/models.py:113 Visitor/models.py:149 Visitor/models.py:175
+#: Visitor/models.py:216
+msgid "Title"
+msgstr "Titre"
+
+#: CMS/models.py:53 Visitor/models.py:25 Visitor/models.py:150
+#: Visitor/models.py:217
+msgid "Description"
+msgstr "Description"
+
+#: CMS/models.py:54 CMS/models.py:116 FAQ/models.py:37
+msgid "Banner Image"
+msgstr "Image de la bannière"
+
+#: CMS/models.py:55 Events/models.py:61 Regions/models.py:121
+#: WhatsHot/models.py:28
+msgid "Address"
+msgstr "Addresse"
+
+#: CMS/models.py:56 Events/models.py:62 Regions/models.py:122
+#: WhatsHot/models.py:29
+msgid "Web Site"
+msgstr "site Web"
+
+#: CMS/models.py:57 Configuration/models.py:26 Events/models.py:63
+#: Regions/models.py:123 WhatsHot/models.py:30
+msgid "Contact Email"
+msgstr "Email du contact"
+
+#: CMS/models.py:58 Events/models.py:64 Regions/models.py:124
+#: WhatsHot/models.py:32
+msgid "Instagram url"
+msgstr "Instagram url"
+
+#: CMS/models.py:59 Events/models.py:65 Regions/models.py:125
+#: WhatsHot/models.py:34
+msgid "Twitter url"
+msgstr "Twitter url"
+
+#: CMS/models.py:60 Events/models.py:66 Regions/models.py:126
+#: WhatsHot/models.py:36
+msgid "Facebook url"
+msgstr "Facebook url"
+
+#: CMS/models.py:61 Events/models.py:67 Regions/models.py:127
+msgid "Phone 1"
+msgstr "Téléphone 1"
+
+#: CMS/models.py:62 Events/models.py:68 Regions/models.py:128
+#: WhatsHot/models.py:39
+msgid "Phone 2"
+msgstr "Téléphone 2"
+
+#: CMS/models.py:63 Events/models.py:69 Regions/models.py:129
+#: WhatsHot/models.py:40
+msgid "Phone 3"
+msgstr "Téléphone 3"
+
+#: CMS/models.py:64 Events/models.py:70 Regions/models.py:130
+#: WhatsHot/models.py:42
+msgid "Google Maps Iframe"
+msgstr "Iframe de Google Maps"
+
+#: CMS/models.py:64 Events/models.py:70 Regions/models.py:130
+#: WhatsHot/models.py:43
+msgid "Visit maps.google.com and copy the iframe"
+msgstr "Visitez maps.google.com et copiez l'iframe"
+
+#: CMS/models.py:70 templates/FAQ/contact.html:25 templates/base.html:191
+#: templates/base.html:359
+msgid "Contact"
+msgstr "Contact"
+
+#: CMS/models.py:96
+msgid "Inspiration"
+msgstr "Inspiration"
+
+#: CMS/models.py:97
+msgid "Inspirations"
+msgstr "Inspirations"
+
+#: CMS/models.py:117
+msgid "Button icon white"
+msgstr "Bouton icone blanc"
+
+#: CMS/models.py:118
+msgid "Button icon color"
+msgstr "Bouton icône couleur"
+
+#: CMS/models.py:119 Events/models.py:15 FAQ/models.py:59
+#: WhatsHot/models.py:167 WhatsHot/models.py:233
+msgid "Order"
+msgstr "Commande"
+
+#: CMS/models.py:120 FAQ/models.py:58
+msgid "Display"
+msgstr "Afficher"
+
+#: CMS/models.py:126
+msgid "Slide"
+msgstr "Afficher"
+
+#: CMS/models.py:127
+msgid "Slides"
+msgstr "Diapositives"
+
+#: CMS/urls.py:10
+msgid "^contact/$"
+msgstr "^contact/$"
+
+#: Configuration/admin.py:24
+msgid "QroTravel URLs"
+msgstr "QroTravel URLs"
+
+#: Configuration/admin.py:31
+msgid "Social URLs"
+msgstr "Social URLs"
+
+#: Configuration/admin.py:38
+msgid "Contact email"
+msgstr "Email du contact"
+
+#: Configuration/admin.py:45
+msgid "Search section configuration"
+msgstr "Configuration de la section de recherche"
+
+#: Configuration/admin.py:54
+msgid "Error page configuration"
+msgstr "Configuration de la page d'erreur"
+
+#: Configuration/admin.py:61
+msgid "Analytics"
+msgstr "Analytics"
+
+#: Configuration/admin.py:62 templates/base.html:432 templates/base.html:444
+#: templates/configuration/privacy_policy.html:15
+msgid "Privacy policy"
+msgstr "Politique de confidentialité"
+
+#: Configuration/apps.py:9
+msgid "Queretaro Travel Configuration"
+msgstr "Queretaro Travel Configuration"
+
+#: Configuration/models.py:16
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: Configuration/models.py:17 templates/base.html:108
+msgid "Promotions"
+msgstr "Promotions"
+
+#: Configuration/models.py:18
+msgid "Reserve"
+msgstr "réserve"
+
+#: Configuration/models.py:19
+msgid "Occ"
+msgstr "Occ"
+
+#: Configuration/models.py:20
+msgid "Discover"
+msgstr "Découvrir"
+
+#: Configuration/models.py:20
+msgid "embed code"
+msgstr "code intégré"
+
+#: Configuration/models.py:22
+msgid "instagram url"
+msgstr "Instagram url"
+
+#: Configuration/models.py:23
+msgid "facebook url"
+msgstr "Facebook url"
+
+#: Configuration/models.py:24
+msgid "twitter url"
+msgstr "Twitter url"
+
+#: Configuration/models.py:28
+msgid "min temperature"
+msgstr "température min"
+
+#: Configuration/models.py:29
+msgid "max temperature"
+msgstr "température max"
+
+#: Configuration/models.py:30
+msgid "weather icon"
+msgstr "icône météo"
+
+#: Configuration/models.py:32
+msgid "Search title"
+msgstr "Titre de la recherche"
+
+#: Configuration/models.py:33
+msgid "Search subtitle"
+msgstr "Rechercher un sous-titre"
+
+#: Configuration/models.py:34
+msgid "Search banner Image"
+msgstr "Rechercher banner Image"
+
+#: Configuration/models.py:36
+msgid "Error banner Image"
+msgstr "Image de l'erreur"
+
+#: Configuration/models.py:38
+#, fuzzy
+#| msgid "Error banner Image"
+msgid "Privacy policy banner Image"
+msgstr "Image de l'erreur"
+
+#: Configuration/models.py:39
+msgid "privacy policy"
+msgstr ""
+
+#: Configuration/models.py:41
+msgid "Transparency banner Image"
+msgstr "Transparence banner Image"
+
+#: Configuration/models.py:42 templates/configuration/transparency.html:15
+msgid "Transparency"
+msgstr "Transparence"
+
+#: Events/apps.py:9 Events/models.py:80 templates/base.html:179
+#: templates/base.html:339 templates/events/event.html:30
+#: templates/events/landing.html:16 templates/search/results.html:43
+msgid "Events"
+msgstr "Événements"
+
+#: Events/models.py:54
+msgid "subtitle"
+msgstr "Sous-titre"
+
+#: Events/models.py:57
+msgid "start date"
+msgstr "date de début"
+
+#: Events/models.py:58
+msgid "end date"
+msgstr "date de fin"
+
+#: Events/models.py:59 Events/models.py:113 Regions/models.py:192
+#: WhatsHot/models.py:27 WhatsHot/models.py:126 WhatsHot/models.py:219
+msgid "image"
+msgstr "image"
+
+#: Events/models.py:71
+msgid "Published"
+msgstr "Publié"
+
+#: Events/models.py:79 Events/models.py:96 Events/models.py:114
+msgid "Event"
+msgstr "Événement"
+
+#: Events/models.py:118
+msgid "EventPhoto"
+msgstr "photoD’événements"
+
+#: Events/models.py:119
+msgid "Event Photos"
+msgstr "photos D’événements"
+
+#: Events/urls.py:8
+msgid "^events/$"
+msgstr "^evenements/$"
+
+#: Events/urls.py:9
+#, python-brace-format
+msgid "^events/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$"
+msgstr "^evenements/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$"
+
+#: Events/urls.py:10
+msgid "^events/(?P<event_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^evenements/(?P<event_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: FAQ/apps.py:9 FAQ/views.py:18 templates/base.html:188
+#: templates/base.html:354
+msgid "FAQs"
+msgstr "FAQ’s"
+
+#: FAQ/models.py:57
+msgid "Answer"
+msgstr "Répondre"
+
+#: FAQ/models.py:66
+msgid "Question"
+msgstr "Question"
+
+#: FAQ/models.py:67
+msgid "Questions"
+msgstr "Questions"
+
+#: Gastronomy/admin.py:25 Regions/admin.py:18 Visitor/admin.py:17
+#: Visitor/admin.py:66
+msgid "Landing Data"
+msgstr "Données d'atterrissage"
+
+#: Gastronomy/admin.py:34 Visitor/admin.py:75
+msgid "Landing Extra Data"
+msgstr "Données supplémentaires sur l'atterrissage"
+
+#: Gastronomy/apps.py:9 templates/base.html:176 templates/base.html:334
+msgid "Gastronomy"
+msgstr "La gastronomie"
+
+#: Gastronomy/models.py:21 Gastronomy/models.py:55 Regions/models.py:22
+#: Regions/models.py:71 Regions/models.py:114 Visitor/models.py:27
+#: Visitor/models.py:117 Visitor/models.py:180
+msgid "Banner image"
+msgstr "Image de la bannière"
+
+#: Gastronomy/models.py:23 Visitor/models.py:30 Visitor/models.py:83
+msgid "Location description"
+msgstr "Description du lieu"
+
+#: Gastronomy/models.py:24 Regions/models.py:68 Regions/models.py:112
+#: Visitor/models.py:31 Visitor/models.py:84 Visitor/models.py:178
+msgid "Sub Heading"
+msgstr "sous-tête"
+
+#: Gastronomy/models.py:25 Visitor/models.py:36 Visitor/models.py:85
+msgid "Location image"
+msgstr "Localisation image"
+
+#: Gastronomy/models.py:31
+msgid "Gastronomy Landing"
+msgstr "Débarquement Gastronomie"
+
+#: Gastronomy/models.py:52 Regions/models.py:111 Visitor/models.py:114
+#: Visitor/models.py:176
+msgid "Sub Title"
+msgstr "Sous-titre"
+
+#: Gastronomy/models.py:59 Regions/models.py:77 Regions/models.py:134
+#: Visitor/models.py:121 WhatsHot/models.py:51
+msgid "button text"
+msgstr "bouton de texte"
+
+#: Gastronomy/models.py:70
+msgid "Gastronomy Section"
+msgstr "Section Gastronomie"
+
+#: Gastronomy/models.py:71
+msgid "Gastronomy Sections"
+msgstr "Sections Gastronomie"
+
+#: Gastronomy/urls.py:8
+msgid "^gastronomy/$"
+msgstr "^gastronomie/$"
+
+#: Menus/apps.py:9
+msgid "Menus"
+msgstr "Menus"
+
+#: Menus/models.py:16
+msgid "icon"
+msgstr "icône"
+
+#: Menus/models.py:16
+msgid "Color svg file"
+msgstr "Fichier couleur svg"
+
+#: Menus/models.py:17
+msgid "link url"
+msgstr "lien url"
+
+#: Menus/models.py:19
+msgid "display"
+msgstr "afficher"
+
+#: Menus/models.py:25
+msgid "Footer Logo Link"
+msgstr "Lien du logo du pied de page"
+
+#: Menus/models.py:26
+msgid "Footer Logo Links"
+msgstr "Footer Logo Liens"
+
+#: Menus/models.py:40 Menus/models.py:60
+msgid "link"
+msgstr "lien"
+
+#: Menus/models.py:42 Menus/models.py:63
+msgid "active"
+msgstr "actif"
+
+#: Menus/models.py:48
+msgid "Footer Link"
+msgstr "Lien de bas de page"
+
+#: Menus/models.py:49
+msgid "Footer Links"
+msgstr "Liens de bas de page"
+
+#: Menus/models.py:58
+msgid "main menu link"
+msgstr "Lien du menu principal"
+
+#: Menus/models.py:61
+msgid "open in new window"
+msgstr "ouvrir dans une nouvelle fenetre"
+
+#: Menus/models.py:69
+msgid "Footer SubLink"
+msgstr "Footer SubLink"
+
+#: Menus/models.py:70
+msgid "Footer SubLinks"
+msgstr "Footer SubLinks"
+
+#: QroTravel/settings.py:132
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: QroTravel/settings.py:133
+msgid "English"
+msgstr "Anglais"
+
+#: QroTravel/settings.py:134
+msgid "French"
+msgstr "Français"
+
+#: Regions/admin.py:27
+msgid "Regions General Data"
+msgstr "Régions Données générales"
+
+#: Regions/apps.py:9 Regions/models.py:84 templates/base.html:152
+#: templates/base.html:303 templates/search/results.html:48
+msgid "Regions"
+msgstr "Régions"
+
+#: Regions/models.py:26
+msgid "Sub Regions Sub Heading"
+msgstr "Sous-régions Sous-titre"
+
+#: Regions/models.py:29
+msgid "Sub Regions Heading"
+msgstr "Sous-régions Titre"
+
+#: Regions/models.py:32
+msgid "Sub Regions image"
+msgstr "Image des sous-régions"
+
+#: Regions/models.py:39
+msgid "Region Guide Configuration"
+msgstr "Configuration du guide régional"
+
+#: Regions/models.py:63
+msgid "Title Color"
+msgstr "Titre Couleur"
+
+#: Regions/models.py:64
+msgid "Hexadecimal color #000000"
+msgstr "Couleur hexadécimale # 000000"
+
+#: Regions/models.py:66
+#, fuzzy
+#| msgid "Search subtitle"
+msgid "Inner Banner Subtitle"
+msgstr "Rechercher un sous-titre"
+
+#: Regions/models.py:67 Visitor/models.py:177
+msgid "Heading"
+msgstr "tête"
+
+#: Regions/models.py:69
+msgid "Extra Data"
+msgstr "Données supplémentaires"
+
+#: Regions/models.py:74
+msgid "Sub Banner image"
+msgstr "Image de bannière secondaire"
+
+#: Regions/models.py:83
+msgid "Region"
+msgstr "Region"
+
+#: Regions/models.py:118 WhatsHot/models.py:23
+msgid "Excerpt to display on search results and short descriptions"
+msgstr ""
+"Extrait à afficher sur les résultats de recherche et les descriptions "
+"abrégées"
+
+#: Regions/models.py:149
+msgid "Regions Section"
+msgstr "Régions Section"
+
+#: Regions/models.py:150
+msgid "Regions Sections"
+msgstr "Régions Sections"
+
+#: Regions/models.py:183
+msgid "No information available"
+msgstr "Pas d'information disponible"
+
+#: Regions/models.py:193
+msgid "Section"
+msgstr "Section"
+
+#: Regions/models.py:197
+msgid "Section Photo"
+msgstr "Section"
+
+#: Regions/models.py:198
+msgid "Section Photos"
+msgstr "Photos de la section"
+
+#: Regions/urls.py:8
+msgid "^regions/$"
+msgstr "^les-regions/$"
+
+#: Regions/urls.py:9
+msgid "^region/(?P<region_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^region/(?P<region_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: Regions/urls.py:10
+#, fuzzy
+#| msgid "^what-to-do/section/(?P<section_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgid "^section/(?P<section_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^que-faire/section/(?P<section_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: SocialAccounts/apps.py:9
+msgid "SocialAccounts"
+msgstr "Comptes sociaux"
+
+#: SocialAccounts/models.py:23
+msgid "Client ID"
+msgstr "identité du client"
+
+#: SocialAccounts/models.py:24
+msgid "App Secret Key"
+msgstr "App Secret Key"
+
+#: SocialAccounts/models.py:27 SocialAccounts/models.py:30
+msgid "Facebook App Configuration"
+msgstr "Facebook App Configuration"
+
+#: SocialAccounts/models.py:34 SocialAccounts/models.py:135
+#: SocialAccounts/models.py:195
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#: SocialAccounts/models.py:34 SocialAccounts/models.py:135
+#: SocialAccounts/models.py:195
+msgid "Display name on this page."
+msgstr "Afficher le nom sur cette page."
+
+#: SocialAccounts/models.py:35
+msgid "Screen Name"
+msgstr "Nom de l'écran"
+
+#: SocialAccounts/models.py:35
+msgid "Facebook page name, found in URL"
+msgstr "Nom de la page Facebook, trouvé dans l'URL"
+
+#: SocialAccounts/models.py:38
+msgid "Facebook Account"
+msgstr "Compte Facebook"
+
+#: SocialAccounts/models.py:39
+msgid "Facebook Accounts"
+msgstr "Comptes Facebook"
+
+#: SocialAccounts/models.py:95
+msgid "Account display name"
+msgstr "Nom d'affichage du compte"
+
+#: SocialAccounts/models.py:96
+msgid "Profile image"
+msgstr "Photo de profil"
+
+#: SocialAccounts/models.py:97
+msgid "Content"
+msgstr "Contenu"
+
+#: SocialAccounts/models.py:99
+msgid "Media Url"
+msgstr "Media Url"
+
+#: SocialAccounts/models.py:106
+msgid "Feeds type"
+msgstr "Feeds type"
+
+#: SocialAccounts/models.py:109
+msgid "Uid"
+msgstr "Uid"
+
+#: SocialAccounts/models.py:110
+msgid "Publish Date"
+msgstr "Date de publication"
+
+#: SocialAccounts/models.py:114
+msgid "Feed"
+msgstr "Feed"
+
+#: SocialAccounts/models.py:115
+msgid "Feeds"
+msgstr "Feeds"
+
+#: SocialAccounts/models.py:138
+msgid "Instagram Account"
+msgstr "Compte Instagram"
+
+#: SocialAccounts/models.py:139
+msgid "Instagram Accounts"
+msgstr "Comptes Instagram"
+
+#: SocialAccounts/models.py:196
+msgid "Twitter Username"
+msgstr "Nom d'utilisateur Twitter"
+
+#: SocialAccounts/models.py:197
+msgid "OAuth Token"
+msgstr "OAuth Token"
+
+#: SocialAccounts/models.py:198
+msgid "OAuth Secret"
+msgstr "OAuth Secret"
+
+#: SocialAccounts/models.py:199
+msgid "Twitter Key"
+msgstr "Clé de Twitter"
+
+#: SocialAccounts/models.py:200
+msgid "Twitter Key Secret"
+msgstr "Twitter Key Secret"
+
+#: SocialAccounts/models.py:203
+msgid "Twitter Account"
+msgstr "Compte Twitter"
+
+#: SocialAccounts/models.py:204
+msgid "Twitter Accounts"
+msgstr "Comptes Twitter"
+
+#: SocialAccounts/utils/feeds_types.py:9
+msgid "twitter"
+msgstr "twitter"
+
+#: SocialAccounts/utils/feeds_types.py:10
+msgid "instagram"
+msgstr "instagram"
+
+#: SocialAccounts/utils/feeds_types.py:11
+msgid "facebook"
+msgstr "facebook"
+
+#: Visitor/admin.py:27
+msgid "Location Data"
+msgstr "Données de localisation"
+
+#: Visitor/admin.py:37
+msgid "How to arrive Data"
+msgstr "À venir"
+
+#: Visitor/admin.py:45
+msgid "Weather Data"
+msgstr "Données météorologiques"
+
+#: Visitor/apps.py:9
+msgid "Visitor"
+msgstr "Visiteur"
+
+#: Visitor/models.py:24
+msgid "Section name"
+msgstr "Nom de la section"
+
+#: Visitor/models.py:33
+msgid "Sub Heading Title"
+msgstr "Titre de sous-titre"
+
+#: Visitor/models.py:39
+msgid "Arrive description"
+msgstr "Arrivée description"
+
+#: Visitor/models.py:41
+msgid "Background arrive image"
+msgstr "Arrière-plan, arrivée, image"
+
+#: Visitor/models.py:45
+msgid "Weather description"
+msgstr "Description météo"
+
+#: Visitor/models.py:52
+msgid "Visitor Guide Configuration"
+msgstr "Configuration du guide des visiteurs"
+
+#: Visitor/models.py:81
+msgid "Image of the Queretaro banner"
+msgstr ""
+
+#: Visitor/models.py:86
+msgid "FAQs text"
+msgstr "FAQs texte"
+
+#: Visitor/models.py:87
+msgid "Show faqs text"
+msgstr "Afficher le texte des faqs"
+
+#: Visitor/models.py:93
+msgid "Queretaro Landing"
+msgstr "Queretaro Landing"
+
+#: Visitor/models.py:122
+msgid "button link"
+msgstr "lien de bouton"
+
+#: Visitor/models.py:132
+msgid "Queretaro Section"
+msgstr "Section de Querétaro"
+
+#: Visitor/models.py:133
+msgid "Queretaro Sections"
+msgstr "Sections de Querétaro"
+
+#: Visitor/models.py:152 Visitor/models.py:219
+msgid "Icon"
+msgstr "Icône"
+
+#: Visitor/models.py:161
+msgid "Visitor Guide Season"
+msgstr "Saison de la visite guidée"
+
+#: Visitor/models.py:162
+msgid "Visitor Guide Seasons"
+msgstr "Guide du visiteur Saisons"
+
+#: Visitor/models.py:183
+msgid "Section file"
+msgstr "Fichier de section"
+
+#: Visitor/models.py:187
+msgid "Button Section Text"
+msgstr "Texte de la section du bouton"
+
+#: Visitor/models.py:194
+msgid "Visitor Guide Section"
+msgstr "Section du guide des visiteurs"
+
+#: Visitor/models.py:195
+msgid "Visitor Guide Sections"
+msgstr "Sections du guide des visiteurs"
+
+#: Visitor/models.py:231
+msgid "Visitor Guide Transportation Type"
+msgstr "Type de transport"
+
+#: Visitor/models.py:232
+msgid "Visitor Guide Transportation Types"
+msgstr "Guide de visite Types de transport"
+
+#: Visitor/urls.py:8
+msgid "^visitors/$"
+msgstr "^visiteur/$"
+
+#: Visitor/urls.py:9
+msgid "^visitors-guide/$"
+msgstr "^guide-des-visiteurs/$"
+
+#: Visitor/utils/season_types.py:10
+msgid "Winter"
+msgstr "Hiver"
+
+#: Visitor/utils/season_types.py:11
+msgid "Spring"
+msgstr "Printemps"
+
+#: Visitor/utils/season_types.py:12
+msgid "Summer"
+msgstr "Été"
+
+#: Visitor/utils/season_types.py:13
+msgid "Autumn"
+msgstr "L'automne"
+
+#: Visitor/utils/transportation_types.py:10
+msgid "Airplane"
+msgstr "Avion"
+
+#: Visitor/utils/transportation_types.py:11
+msgid "Bus"
+msgstr "Autobus"
+
+#: Visitor/utils/transportation_types.py:12
+msgid "Automobile"
+msgstr "Voiture"
+
+#: Visitor/utils/transportation_types.py:13
+msgid "Taxi"
+msgstr "Taxi"
+
+#: WhatsHot/admin.py:62 WhatsHot/admin.py:189 WhatsHot/models.py:154
+msgid "Category Filters"
+msgstr "Catégorie Filtres"
+
+#: WhatsHot/admin_forms.py:80 WhatsHot/models.py:222
+msgid "main category"
+msgstr "catégorie principale"
+
+#: WhatsHot/admin_forms.py:84
+#, fuzzy
+#| msgid "categories"
+msgid "other categories"
+msgstr "Catégories"
+
+#: WhatsHot/apps.py:9
+msgid "What's Hot"
+msgstr "Ce qui est chaud"
+
+#: WhatsHot/models.py:19
+msgid "sub heading"
+msgstr "sous-position"
+
+#: WhatsHot/models.py:38
+msgid "Phone"
+msgstr "Téléphone"
+
+#: WhatsHot/models.py:55
+msgid "Button 360 Link"
+msgstr "Bouton 360 Lien"
+
+#: WhatsHot/models.py:58
+msgid "button 360 text"
+msgstr "Bouton 360 texte"
+
+#: WhatsHot/models.py:62
+msgid "sections"
+msgstr "sections"
+
+#: WhatsHot/models.py:71 WhatsHot/models.py:236
+msgid "category filters"
+msgstr "Filtres catégorie"
+
+#: WhatsHot/models.py:77
+msgid "keywords"
+msgstr ""
+
+#: WhatsHot/models.py:85 WhatsHot/models.py:128
+msgid "Card"
+msgstr "Carte"
+
+#: WhatsHot/models.py:86
+msgid "Cards"
+msgstr "Cartes"
+
+#: WhatsHot/models.py:133
+msgid "Card Photo"
+msgstr "Photo de la carte"
+
+#: WhatsHot/models.py:134
+msgid "Card Photos"
+msgstr "Photos de la carte"
+
+#: WhatsHot/models.py:153
+msgid "Category Filter"
+msgstr "Filtre de catégorie"
+
+#: WhatsHot/models.py:164 WhatsHot/models.py:190
+msgid "category filter"
+msgstr "Catégorie filtre"
+
+#: WhatsHot/models.py:173
+msgid "Category Filter Option"
+msgstr "Option de filtre de catégorie"
+
+#: WhatsHot/models.py:174
+msgid "Category Filter Options"
+msgstr "Options de filtre de catégorie"
+
+#: WhatsHot/models.py:188
+msgid "has sections"
+msgstr "A des sections"
+
+#: WhatsHot/models.py:229
+msgid "Outstanding"
+msgstr "Exceptionnel"
+
+#: WhatsHot/models.py:243
+#, fuzzy
+#| msgid "Section"
+msgid "Section WH"
+msgstr "Section"
+
+#: WhatsHot/models.py:244
+#, fuzzy
+#| msgid "Sections"
+msgid "Sections WH"
+msgstr "Sections"
+
+#: WhatsHot/models.py:273
+msgid "Keyword"
+msgstr ""
+
+#: WhatsHot/models.py:274
+msgid "Keywords"
+msgstr ""
+
+#: WhatsHot/urls.py:12
+msgid "^what-to-do/(?P<category_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^que-faire/(?P<category_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: WhatsHot/urls.py:13
+msgid "^what-to-do/section/(?P<section_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^que-faire/section/(?P<section_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: WhatsHot/urls.py:14
+msgid "^what-to-do/card/(?P<card_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+msgstr "^que-faire/carte/(?P<card_id>\\d+)/(?P<slug>[\\w\\-]+)/$"
+
+#: WhatsHot/urls.py:16
+msgid "^search/$"
+msgstr "^chercher/$"
+
+#: WhatsHot/urls.py:17
+msgid "^search/category/(?P<category_id>\\d+)/$"
+msgstr "^chercher/categorie/(?P<category_id>\\d+)/$"
+
+#: WhatsHot/urls.py:18
+msgid "^search/event/$"
+msgstr "^chercher/evenement/$"
+
+#: WhatsHot/urls.py:19
+msgid "^search/post/$"
+msgstr "^chercher/post/$"
+
+#: WhatsHot/urls.py:20
+msgid "^search/section/$"
+msgstr "^chercher/section/$"
+
+#: templates/404.html:15
+msgid "ERROR 404"
+msgstr "ERROR 404"
+
+#: templates/404.html:16
+msgid "The content that you are looking for does not exists."
+msgstr "Le contenu que vous recherchez n'existe pas."
+
+#: templates/404.html:17
+msgid ""
+"\n"
+"            <p class=\"text\">\n"
+"              DON'T WORRY, YOU CAN GO BACK TO THE <a href=\"javascript:"
+"history.back()\">LAST PAGE</a> OR TO THE <a href=\"/\">HOME PAGE</a>.\n"
+"            </p>\n"
+"            "
+msgstr ""
+"\n"
+"            <p class=\"text\">\n"
+"              Ne VOUS INQUIETÉZ PAS, VOUS POUVEZ RETOURNER <a href="
+"\"javascript:history.back()\"> A LA DERNIÈRE PAGE</a> OU <a href=\"/\">A LA "
+"PAGE D'ACCUEIL</a>.\n"
+"            </p>\n"
+"            "
+
+#: templates/500.html:15
+msgid "ERROR 500"
+msgstr "ERROR 500"
+
+#: templates/500.html:16
+msgid "It looks like we have a problem"
+msgstr "On dirait que nous avons un problème"
+
+#: templates/500.html:17
+msgid ""
+"\n"
+"            <p class=\"text\">\n"
+"              SOMETHING WENT WRONG IN OUR SERVER, BUT YOU CAN GO BACK TO THE "
+"<a href=\"javascript:history.back()\">LAST PAGE</a> OR TO THE <a href=\"/"
+"\">HOME PAGE</a>.\n"
+"            </p>\n"
+"            "
+msgstr ""
+"\n"
+"            <p class=\"text\">\n"
+"              QUELQUE CHOSE A ÉTÉ FAIBLE DANS NOTRE SERVEUR, MAIS VOUS "
+"POUVEZ RETOURNER <a href=\"javascript:history.back()\"> A LA DERNIÈRE PAGE</"
+"a> OU <a href=\"/\">A LA PAGE D'ACCUEIL</a>.\n"
+"            </p>\n"
+"            "
+
+#: templates/FAQ/contact.html:51 templates/events/event.html:67
+#: templates/regions/section.html:62 templates/visitors/visitors_guide.html:238
+#: templates/whatshot/card.html:77
+msgid "Contact data"
+msgstr "Données de contact"
+
+#: templates/FAQ/contact.html:55 templates/events/event.html:71
+#: templates/regions/section.html:66 templates/visitors/visitors_guide.html:37
+#: templates/visitors/visitors_guide.html:242 templates/whatshot/card.html:81
+msgid "Location"
+msgstr "Emplacement"
+
+#: templates/FAQ/contact.html:59 templates/events/event.html:75
+#: templates/regions/section.html:70 templates/visitors/visitors_guide.html:246
+#: templates/whatshot/card.html:85
+msgid "Contact phones"
+msgstr "Téléphones contractuels"
+
+#: templates/FAQ/contact.html:71 templates/visitors/visitors_guide.html:258
+msgid "Follow this site"
+msgstr "Suivez ce site"
+
+#: templates/FAQ/contact.html:131
+msgid "Need more information? Leave us a message"
+msgstr "Besoin de plus d'informations? Laissez-nous un message"
+
+#: templates/FAQ/contact.html:136
+msgid "Message delivered."
+msgstr "Message délivré."
+
+#: templates/FAQ/contact.html:139
+msgid "Please verify your information."
+msgstr "Veuillez vérifier vos informations."
+
+#: templates/FAQ/contact.html:145 templates/FAQ/contact.html:147
+#: templates/FAQ/contact.html:148
+msgid "Name(s)"
+msgstr "Prénom(s)"
+
+#: templates/FAQ/contact.html:152 templates/FAQ/contact.html:154
+#: templates/FAQ/contact.html:155
+msgid "Email"
+msgstr "Email"
+
+#: templates/FAQ/contact.html:159 templates/FAQ/contact.html:161
+#: templates/FAQ/contact.html:162
+msgid "Subject"
+msgstr "Assujettir"
+
+#: templates/FAQ/contact.html:167 templates/FAQ/contact.html:171
+#: templates/FAQ/contact.html:172
+msgid "Message"
+msgstr "Message"
+
+#: templates/FAQ/contact.html:168 templates/FAQ/contact.html:173
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/FAQ/faqs.html:28
+msgid "Sections"
+msgstr "Sections"
+
+#: templates/asomarte/asomarte.html:18
+msgid "Go to website"
+msgstr "Accéder au site web"
+
+#: templates/asomarte/asomarte.html:39
+msgid "Read the digital edition"
+msgstr "Lire l'édition numérique"
+
+#: templates/asomarte/asomarte.html:51
+msgid "Recently in Asomarte TV"
+msgstr "Récemment dans Asomarte TV"
+
+#: templates/base.html:113
+msgid "Booking"
+msgstr "Réservation"
+
+#: templates/base.html:118
+msgid "OCC"
+msgstr "OCC"
+
+#: templates/base.html:143 templates/base.html:291
+msgid "Querétaro"
+msgstr "Querétaro"
+
+#: templates/base.html:147 templates/base.html:296
+msgid "Galleries"
+msgstr "Galeries d'art"
+
+#: templates/base.html:164 templates/base.html:319
+msgid "What to do"
+msgstr "Que faire"
+
+#: templates/blog/ajax_category.html:26 templates/events/ajax_calendar.html:26
+#: templates/whatshot/ajax_what_to_do.html:32
+#: templates/whatshot/ajax_what_to_do_landing.html:16
+msgid "No results found"
+msgstr "Aucun résultat trouvé"
+
+#: templates/blog/ajax_category.html:32 templates/events/ajax_calendar.html:32
+#: templates/whatshot/ajax_what_to_do.html:40
+#: templates/whatshot/ajax_what_to_do_landing.html:22
+msgid "Load more"
+msgstr "Charger plus"
+
+#: templates/blog/article.html:59
+msgid "Recommended articles"
+msgstr "Articles recommandés"
+
+#: templates/blog/categories.html:18 templates/index.html:38
+#: templates/index.html:122
+msgid "Read more"
+msgstr "Lire la suite"
+
+#: templates/blog/category.html:45 templates/index.html:78
+msgid "Inspiration for your journey"
+msgstr "Inspiration pour votre voyage"
+
+#: templates/blog/category.html:63
+msgid "View more articles"
+msgstr "Voir plus d'articles"
+
+#: templates/events/event.html:87
+msgid "Follow this event"
+msgstr "Suivez cet événement"
+
+#: templates/events/landing.html:30 templates/search/results.html:42
+msgid "All"
+msgstr "Tout"
+
+#: templates/events/landing.html:42 templates/whatshot/what_to_do.html:38
+#: templates/whatshot/what_to_do_landing.html:28
+msgid "Search Filters"
+msgstr "Filtres de recherche"
+
+#: templates/events/landing.html:66 templates/whatshot/what_to_do.html:54
+#: templates/whatshot/what_to_do_landing.html:45
+msgid "Clear Filters"
+msgstr "Effacer les filtres"
+
+#: templates/events/landing.html:80
+msgid "Next events in Querétaro"
+msgstr "Prochains événements à Querétaro"
+
+#: templates/gastronomy/landing.html:73 templates/regions/region.html:68
+#: templates/regions/regions_landing.html:80
+#: templates/visitors/queretaro_landing.html:78 templates/whatshot/card.html:97
+msgid "More info"
+msgstr "Plus d'informations"
+
+#: templates/gastronomy/landing.html:90 templates/regions/region.html:84
+#: templates/regions/regions_landing.html:96
+#: templates/visitors/queretaro_landing.html:95
+msgid "RECOMMENDED ARTICLES"
+msgstr "ARTICLES RECOMMANDÉS"
+
+#: templates/gastronomy/landing.html:119 templates/regions/region.html:113
+#: templates/regions/regions_landing.html:125
+#: templates/visitors/queretaro_landing.html:124
+msgid "See all"
+msgstr "Voir tout"
+
+#: templates/index.html:28
+msgid "LATEST IN QUERETARO"
+msgstr "DERNIERE EN QUERETARO"
+
+#: templates/index.html:64
+msgid "Discover Querétaro"
+msgstr "Découvrez Querétaro"
+
+#: templates/index.html:146
+msgid "UPCOMING EVENTS IN QUERÉTARO"
+msgstr "ÉVÉNEMENTS À VENIR À QUERÉTARO"
+
+#: templates/regions/region.html:15 templates/regions/regions_landing.html:23
+msgid "REGIONS"
+msgstr "RÉGIONS"
+
+#: templates/regions/region.html:34
+msgid "Regions to Explore"
+msgstr "Régions à explorer"
+
+#: templates/regions/region.html:40
+msgid "Some Data"
+msgstr "Certaines données"
+
+#: templates/regions/section.html:82
+msgid "Follow this section"
+msgstr "Suivez cette section"
+
+#: templates/visitors/visitors_guide.html:66
+msgid "How to arrive?"
+msgstr "Comment arriver?"
+
+#: templates/visitors/visitors_guide.html:110
+msgid "Weather"
+msgstr "Météo"
+
+#: templates/visitors/visitors_guide.html:116
+msgid "Weather today"
+msgstr "La météo aujourd'hui"
+
+#: templates/whatshot/ajax_what_to_do.html:25
+msgid "View more details"
+msgstr "Voir plus de détails"
+
+#: templates/whatshot/card.html:38
+msgid "360 View"
+msgstr "Vue 360"
+
+#: templates/whatshot/what_to_do_landing.html:58
+msgid "Collections"
+msgstr "Collections"
+
+#~ msgid "CMS"
+#~ msgstr "CMS"
+
+#~ msgid "Post"
+#~ msgstr "Post"
+
+#~ msgid "categories title"
+#~ msgstr "Catégories titre"
+
+#~ msgid "category title"
+#~ msgstr "Titre de la catégorie"
+
+#~ msgid "post image"
+#~ msgstr "post image"
+
+#~ msgid "Posts"
+#~ msgstr "Posts"
+
+#~ msgid "Messages"
+#~ msgstr "Messages"
+
+#~ msgid "Static Files"
+#~ msgstr "Fichiers statiques"
+
+#~ msgid "Syndication"
+#~ msgstr "Syndication"
+
+#, fuzzy
+#~| msgid "Email address"
+#~ msgid "Enter a valid email address."
+#~ msgstr "Adresse e-mail"
+
+#, fuzzy
+#~| msgid "IPv4 address"
+#~ msgid "Enter a valid IPv4 address."
+#~ msgstr "IPv4 Addresse"
+
+#~ msgid "Duration"
+#~ msgstr "Durée"
+
+#~ msgid "Email address"
+#~ msgstr "Adresse e-mail"
+
+#~ msgid "IPv4 address"
+#~ msgstr "IPv4 Addresse"
+
+#~ msgid "IP address"
+#~ msgstr "IP Addresse"
+
+#~ msgid "aug"
+#~ msgstr "Août"
+
+#~ msgid "oct"
+#~ msgstr "oct"
+
+#~ msgid "More information is available with DEBUG=True."
+#~ msgstr "Plus d'informations sont disponibles avec DEBUG=True."
+
+#~ msgid "View on site"
+#~ msgstr "Vue sur le site"
+
+#~ msgid ""
+#~ "^region/(?P<region_id>\\d+)/section/(?P<section_id>\\d+)/(?P<slug>[\\w"
+#~ "\\-]+)/$"
+#~ msgstr ""
+#~ "^region/(?P<region_id>\\d+)/section/(?P<section_id>\\d+)/(?P<slug>[\\w"
+#~ "\\-]+)/$"
+
+#~ msgid "only if category doesn't have sections"
+#~ msgstr "Seulement si la catégorie n'a pas de sections"
+
+#~ msgid "filter"
+#~ msgstr "filtre"
+
+#~ msgid "Filter"
+#~ msgstr "Filtre"
+
+#~ msgid "Filters"
+#~ msgstr "Filtres"
+
+#~ msgid "DO YOU HAVE ANY QUESTION?"
+#~ msgstr "AVEZ-VOUS DES QUESTIONS?"
+
+#~ msgid "Visit our section"
+#~ msgstr "Visitez notre section"
+
+#~ msgid ""
+#~ "and answer your questions, or contact directly to our Tourist Assistance "
+#~ "Office"
+#~ msgstr ""
+#~ "Et répondre à vos questions, ou contacter directement à notre bureau "
+#~ "d'assistance touristique"
+
+#~ msgid "here"
+#~ msgstr "ici"
+
+#~ msgid "magazine pdf"
+#~ msgstr "magazine pdf"
+
+#~ msgid "section"
+#~ msgstr "section"
+
+#~ msgid "Or download a PDF copy"
+#~ msgstr "Ou téléchargez une copie PDF"
+
+#~ msgid "tag"
+#~ msgstr "Étiquette"
+
+#~ msgid "Tag"
+#~ msgstr "Étiquette"
+
+#~ msgid "Tags"
+#~ msgstr "Étiquettes"
+
+#~ msgid "latitude"
+#~ msgstr "latitude"
+
+#~ msgid "longitude"
+#~ msgstr "longitude"
+
+#~ msgid "Latest in Querétaro"
+#~ msgstr "Dernières arrivées à Querétaro"
+
+#~ msgid "event_photos"
+#~ msgstr "photos_d’événements"

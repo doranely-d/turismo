@@ -1,0 +1,48 @@
+
+@font-face {
+  font-family: 'KievitOT-regular';
+  src: url('../fonts/KievitOT-Regular.otf') format('opentype');
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+.font-regular {
+  font-family: 'KievitOT-regular' !important;
+}
+
+@font-face {
+  font-family: 'KievitOT-bold';
+  src: url('../fonts/KievitOT-Bold.otf') format('opentype');
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+.font-bold {
+  font-family: 'KievitOT-bold' !important;
+}
+
+@font-face {
+  font-family: 'KievitOT-light';
+  src: url('../fonts/KievitOT-Light.otf') format('opentype');
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+.font-light {
+  font-family: 'KievitOT-light' !important;
+}
+
+@font-face {
+  font-family: 'KievitOT-medium';
+  src: url('../fonts/KievitOT-Medium.otf') format('opentype');
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+
+.font-medium {
+  font-family: 'KievitOT-medium' !important;
+}
+
+@mixin font-family-mixin($font-family) {
+  font-family: $font-family;
+}

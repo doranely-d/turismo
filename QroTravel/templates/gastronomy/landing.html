@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof configuration.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof configuration.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ configuration.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">QUERÉTARO</h1>
+            <h2 class="banner-title white font-bold">{{ configuration.title }}</h2>
+            <h3 class="text">{{ configuration.excerpt|upper }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="visitors-section" >
+    <div class="container">
+      <div class="page-content">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="subtitle font-bold white">{{ configuration.heading|upper }}</p>
+              <p>{{ configuration.description|upper }}</p>
+            </div>
+            <div class="section-list">
+              <ul>
+                {% for section in qs %}
+                <li><a href="#section_{{ section.id }}" class="font-bold queretaro-section"><i class="qro-travel-icon-disc gray-medium"></i> {{ section.title|upper }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <img class="img-responsive" src="{{ configuration.get_image_url }}" alt="{{ configuration.image_alt_text }}"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% for section in qs %}
+<section>
+  <div class="page-banner" id="section_{{ section.id }}">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ section.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <p class="banner-title white font-bold">{{ section.title }}</p>
+            <i class="qro-travel-icon-backward" style="transform: rotate(270deg); font-size: 24px; display: inline-block;"></i>
+            <div class="white banner-subtitle">{{ section.sub_title|safe }}</div>
+            <div class="text">{{ section.excerpt|safe }}</div>
+            {% if section.link %}
+            <a class="btn btn-primary" href="{{ section.link }}" {% if section.blank %}target="_blank"{% endif %} style="margin-top:30px;">
+              {% if section.button_text %}
+              {{ section.button_text }}
+              {% else %}
+              {% trans 'More info' %}
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% if qs_post %}
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{% trans 'RECOMMENDED ARTICLES' %}</p>
+
+      <div class="row">
+        {% for post in qs_post %}
+        <div class="col-sm-4 blog-card">
+          <a class="card a" href="{% url 'Blog:post' post.id post.slug %}">
+            <div class="image" style="background-image: url('{{ post.get_banner_image_url }}');">
+              <div class="category">
+                {{ post.category.name|title }}
+              </div>
+            </div>
+            <div class="card-description">
+              <p class="article-title">
+                {{ post.title|title }}
+              </p>
+              <div class="article-text">
+                <div class="ellipsis">
+                  <div>
+                    {{ post.excerpt }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="text-center" style="margin: 15px 0px;">
+        <a href="{% url 'Blog:categories' %}" class="btn btn-default">{% trans 'See all' %}</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $('a.queretaro-section').click(function(evt) {
+    evt.preventDefault();
+    var offset = 0;
+    $('.navbar:visible').each(function() {
+      offset += $(this).height();
+    });
+    offset *= -1;
+    $.scrollTo($(this).attr('href'), 800, {offset:offset});
+  });
+
+});
+</script>
+{% endblock %}

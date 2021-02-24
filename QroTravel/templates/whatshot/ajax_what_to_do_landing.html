@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% for section in list_items %}
+<div class="col-sm-4 article-thumbnail filtr-item">
+  <a href="{{ section.absolute_url }}" class="card a">
+    <div class="image" style="background-image: url('{{ section.get_image_url }}');">
+      <div class="table">
+        <div class="table-cell category-name">
+          <p class="font-bold white text-center">{{ section.title }}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+{% empty %}
+{% trans 'No results found' %}
+{% endfor %}
+
+{% if list_items.has_next %}
+<div id="ajax-results" style="text-align:center;">
+  <div class="clearfix"></div>
+  <a class="btn btn-default next-page" href="?page={{ list_items.next_page_number }}">{% trans 'Load more' %}</a>
+</div>
+{% endif %}

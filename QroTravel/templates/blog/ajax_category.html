@@ -1,0 +1,34 @@
+{% load i18n %}
+
+{% for post in list_items %}
+<div class="col-sm-4 blog-card">
+  <a href="{{ post.absolute_url }}" class="card a">
+    <div class="image" style="background-image: url('{{ post.get_banner_image_url }}');">
+      <div class="category">
+        {{ post.category.name }}
+      </div>
+    </div>
+    <div class="card-description">
+      <p class="article-title">
+        {{ post.title }}
+      </p>
+      <div class="article-text">
+        <div class="ellipsis">
+          <div>
+            {{ post.excerpt }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+{% empty %}
+{% trans 'No results found' %}
+{% endfor %}
+
+{% if list_items.has_next %}
+<div id="ajax-results" style="text-align:center;">
+  <div class="clearfix"></div>
+  <a class="btn btn-default next-page" href="?page={{ list_items.next_page_number }}">{% trans 'Load more' %}</a>
+</div>
+{% endif %}

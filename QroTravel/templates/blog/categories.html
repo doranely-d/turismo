@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof configuration.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof configuration.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ configuration.outstanding_post.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">{{ configuration.outstanding_post.category|upper }}</h1>
+            <h2 class="banner-title white font-bold">{{ configuration.outstanding_post.title }}</h2>
+            <h3 class="text">{{ configuration.outstanding_post.excerpt }}</h3>
+            <a href="{{ configuration.outstanding_post.absolute_url }}" class="btn btn-primary">{% trans 'Read more' %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if categories %}
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{{ configuration.categories_title|upper }}</p>
+
+      <div class="row">
+        {% for category in categories %}
+        <div class="col-sm-4 article-thumbnail filtr-item">
+          <a href="{{ category.absolute_url }}" class="card a">
+            <div class="image" style="background-image: url('{{ category.get_thumbnail_image_url }}');">
+              <img src="{{ category.get_thumbnail_image_url }}" alt="{{ category.thumbnail_image_alt_text }}" class="hidden">
+              <div class="table">
+                <div class="table-cell category-name">
+                  <p class="font-bold white text-center">{{ category.name }}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if list_items %}
+<section>
+  <div class="container">
+    <div class="page-content">
+
+      <p class="subtitle text-center">{{ configuration.category_title|upper }}</p>
+
+      <div id="cards-container">
+        {% include 'blog/ajax_category.html' %}
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+{% if list_items %}
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    function sameOrigin(url) {
+        // test that a given url is a same-origin URL
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                // Send the token to same-origin, relative URLs only.
+                // Send the token only if the method warrants CSRF protection
+                // Using the CSRFToken value acquired earlier
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            }
+        }
+    });
+
+    function callback() {
+      $('a.next-page').click(function(evt) {
+        evt.preventDefault();
+        $(this).addClass('disabled');
+        $.post($(this).attr('href'), $(this).serialize(), function(data) {
+          $('#ajax-results').replaceWith(data);
+          callback();
+        });
+      })
+    }
+    callback();
+  });
+</script>
+{% endif %}
+{% endblock %}

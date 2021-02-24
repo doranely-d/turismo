@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof post.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof post.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<style text="text/css">
+  .article-content p img {
+    height: auto !important;
+    margin: 0px !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ post.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">BLOG | {{ post.category.name|upper }}</h1>
+            <h2 class="banner-title white font-bold">{{ post.title|upper }}</h2>
+            <h3 class="text">{{ post.excerpt|upper }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content article">
+
+      <p class="subtitle text-center">{{ post.subtitle|upper }}</p>
+
+      <div class="article-content">
+        {{ post.content|safe }}
+
+        {% if post.post_image %}
+        <p><img src="{{ post.get_post_image_url }}" alt="{{ post.post_image_alt_text }}" /></p>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% if related %}
+<section>
+  <div class="container">
+    <div class="second-page-content">
+
+      <p class="subtitle text-center">{% trans 'Recommended articles'|upper %}</p>
+
+      <div class="row">
+        {% for p in related %}
+        <div class="col-sm-4 blog-card">
+          <a href="{{ p.absolute_url }}" class="card a">
+            <div class="image" style="background-image: url('{{ p.get_banner_image_url }}');">
+              <div class="category">
+                {{ p.category.name }}
+              </div>
+            </div>
+            <div class="card-description">
+              <p class="article-title">
+                {{ p.title }}
+              </p>
+              <div class="article-text">
+                <div class="ellipsis">
+                  <div>
+                    {{ p.excerpt }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

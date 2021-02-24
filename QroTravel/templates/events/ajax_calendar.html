@@ -1,0 +1,35 @@
+{% load i18n %}
+
+{% for event in list_items %}
+<div class="col-sm-4 event-card filter_cat_{{ event.category_id }}">
+  <a href="{{ event.absolute_url }}" class="card a">
+    <div class="image" style="background-image: url('{{ event.get_image_url }}');">
+        <img class="hidden" src="{{ event.get_image_url }}" alt="{{ event.image_alt_text }}" />
+      <div class="category">
+        {{ event.start_date|date:"d F Y" }}{% if event.start_date != event.end_date %} - {{ event.end_date|date:"d F Y" }}{% endif %}
+      </div>
+    </div>
+    <div class="card-description">
+      <p class="article-title">
+        {{ event.title }}
+      </p>
+      <div class="article-text">
+        <div class="ellipsis">
+          <div>
+            {{ event.excerpt }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+{% empty %}
+{% trans 'No results found' %}
+{% endfor %}
+
+{% if list_items.has_next %}
+<div id="ajax-results" style="text-align:center;">
+  <div class="clearfix"></div>
+  <a class="btn btn-default next-page" href="?page={{ list_items.next_page_number }}">{% trans 'Load more' %}</a>
+</div>
+{% endif %}

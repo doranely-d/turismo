@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof configuration.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof configuration.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'fonts/ss-elements.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ configuration.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="white banner-subtitle">{{ configuration.section_name|upper }}</h1>
+            <h2 class="banner-title white font-bold">{{ configuration.title|upper }}</h2>
+            <h3 class="text">{{ configuration.subtitle|upper }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="visitors-section" >
+    <div class="container">
+      <div class="page-content">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="subtitle font-bold white">{% trans 'Location' %}</p>
+              <p>{{ configuration.location_description }}</p>
+            </div>
+            {% if configuration.sub_heading %}
+            <div class="bottom-description">
+              <p class="font-bold pink">{{ configuration.sub_heading_title|upper }}</p>
+              {{ configuration.sub_heading|safe }}
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-sm-6 align-img">
+            <img class="img-responsive" src="{{ configuration.get_location_image_url }}"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="visitors-section" style="background-image: url('{{ configuration.get_background_arrive_image_url }}');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="page-content">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="subtitle font-bold white">{% trans 'How to arrive?' %}</p>
+              <p>{{ configuration.arrive_description }}</p>
+            </div>
+
+            <div class="selector">
+
+              <ul class="transport-options">
+                {% for transportation in qs_transportation %}
+                <li><a class="transport-icon {{ transportation.icon }} {% if forloop.first %}active{% endif %} a" href=".{{ transportation.get_icon_display|lower }}" data-toggle="tab"></a></li>
+                {% endfor %}
+              </ul>
+
+            </div>
+
+            <div class="tab-content">
+              {% for transportation in qs_transportation %}
+              <div class="bottom-description tab-pane fade in {% if forloop.first %}active{% endif %} {{ transportation.get_icon_display|lower }}">
+                <p class="font-bold pink">{{ transportation.title|upper }}</p>
+                <p>{{ transportation.description }}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+          </div>
+          <div class="col-sm-6 tab-content align-img">
+            {% for transportation in qs_transportation %}
+            <img class="img-responsive tab-pane fade in {% if forloop.first %}active{% endif %} {{ transportation.get_icon_display|lower }}" src="{{ transportation.get_image_url }}"/>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="visitors-section white-bg gray-medium" >
+    <div class="container">
+      <div class="page-content">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="subtitle font-bold gray-dark">{% trans 'Weather'|upper %}</p>
+              {{ configuration.weather_description|linebreaksbr }}
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="font-bold gray-dark">{% trans 'Weather today'|upper %} <span class="gray-medium" id="weather_place"> SANTIAGO DE QUERÉTARO</span></p>
+              <div class="weather-info">
+                <div class="icon" id="icon_weather_container"></div>
+                <div class="temperature">
+                  <div class="top" id="min_weather">
+                    <p>
+                      MIN<span style="font-size: 60px"> {{ CONFIGURATION.min_temp }}º C </span>
+                    </p>
+                  </div>
+                  <div id="max_weather">
+                    <p>
+                      MAX<span style="font-size: 60px"> {{ CONFIGURATION.max_temp }}º C </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="visitors-section">
+    <div class="container">
+      <div class="page-content full-height">
+
+        <div class="row">
+          <div class="col-sm-6 full-height-content">
+
+            <div class="selector">
+
+              <ul class="transport-options">
+                {% for season in qs_season %}
+                <li><a class="station-icon {{ season.icon }} {% if forloop.first %}active{% endif %} a" href=".{{ season.get_icon_display|lower }}" data-toggle="tab"></a></li>
+                {% endfor %}
+              </ul>
+
+            </div>
+
+            <div class="tab-content">
+              {% for season in qs_season %}
+              <div class="bottom-description tab-pane fade in {% if forloop.first %}active{% endif %} {{ season.get_icon_display|lower }}">
+                <p class="font-bold pink">{{ season.title|upper }}</p>
+                <p>{{ season.description }}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+          </div>
+          <div class="col-sm-6 tab-content full-height-img">
+            {% for season in qs_season %}
+            <div class="tab-pane fade in {% if forloop.first %}active{% endif %} {{ season.get_icon_display|lower }} img" style="background-image:url('{{ season.get_image_url }}');"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% for section in qs_section %}
+<section>
+  <div class="visitors-section" style="background-image: url('{{ section.get_banner_image_url }}');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="page-content">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="top-description">
+              <p class="subtitle font-bold white">{{ section.title }}</p>
+              <p>{{ section.sub_title }}</p>
+            </div>
+
+            <div class="bottom-description">
+              <p class="font-bold pink">{{ section.heading }}</p>
+              {{ section.sub_heading|safe }}
+
+              {% if section.section_file %}
+              <div class="downloads">
+                <div class="icon">
+                  <i class="qro-travel-icon-filter"></i>
+                </div>
+                <a href="{{ section.get_section_file_url }}" target="_blank" class="btn btn-primary">{{ section.button_section_text }}</a>
+              </div>
+              {% endif %}
+
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+<section>
+  <div class="container">
+    <div class="page-content generic-article">
+
+      <p class="subtitle text-center">SECRETARÍA DE TURISMO DEL ESTADO DE QUERÉTARO</p>
+
+      <div class="generic-article-content">
+
+        <img src="{% static 'img/qroTravel.svg' %}" style="margin-bottom: 30px;" />
+
+        <p>
+           {{ contact.description|safe }}
+        </p>
+      </div>
+
+      <div class="generic-article-contact">
+        <p class="subtitle text-center">{% trans 'Contact data'|upper %}</p>
+
+        <div class="table">
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Location' %}</p>
+            <p>{{ contact.address|safe }}</p>
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Contact phones' %}</p>
+            {% if contact.phone_1 %}
+            <p>T. {{ contact.phone_1 }}</p>
+            {% endif %}
+            {% if contact.phone_2 %}
+            <p>T. {{ contact.phone_2 }}</p>
+            {% endif %}
+            {% if contact.phone_3 %}
+            <p>T. {{ contact.phone_3 }}</p>
+            {% endif %}
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Follow this site' %}</p>
+            {% if contact.web_site %}
+            <p><a href="{{ contact.web_site }}" class="a">{{ contact.web_site }}</a></p>
+            {% endif %}
+            {% if contact.mail %}
+            <p><a class="a">{{ contact.mail }}</a></p>
+            {% endif %}
+            <p>
+              {% if contact.facebook_url %}
+              <a href="{{ contact.facebook_url}}" target="_blank" class="qro-travel-icon-fb a social-icon"></a>
+              {% endif %}
+              {% if contact.twitter_url %}
+              <a href="{{ contact.twitter_url}}" target="_blank" class="qro-travel-icon-twitter a social-icon"></a>
+              {% endif %}
+              {% if contact.instagram_url %}
+              <a href="{{ contact.instagram_url }}" target="_blank" class="qro-travel-icon-instagram a social-icon"></a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/jquery.simpleWeather.min.js' %}"></script>
+<script type="text/javascript">
+  var icon_class_array = [
+    'ss-tornado', 'ss-thunderstorm', 'ss-hurricane', 'ss-thunderstorm', 'ss-thunderstorm', 'ss-rainsnow', 'ss-rainsnow', 'ss-rainsnow',
+    'ss-freezingrain', 'ss-freezingrain', 'ss-freezingrain', 'ss-rain', 'ss-rain', 'ss-snow', 'ss-snow', 'ss-snow',
+    'ss-snow', 'ss-hail', 'ss-sleet', 'ss-dust', 'ss-fog', 'ss-haze', 'ss-smoke', 'ss-thunderstorm',
+    'ss-wind', 'ss-snowflakes', 'ss-clouds', 'ss-mostlycloudynight', 'ss-mostlycloudyday', 'ss-mostlycloudynight', 'ss-mostlycloudyday', 'ss-crescentmoon',
+    'ss-sun', 'ss-cloudynight', 'ss-partlycloudy', 'ss-heavyhail', 'ss-sun', 'ss-thunderstorm', 'ss-thunderstorm', 'ss-thunderstorm',
+    'ss-hail', 'ss-heavysnow', 'ss-snow', 'ss-heavysnow', 'ss-heavyrainsnow', 'ss-heavysnow', 'ss-partlycloudy', 'ss-heavyrainsnow',
+    'ss-heavyrainsnow', 'ss-heavyrainsnow', 'ss-heavyrainsnow'
+  ]
+
+  var icon_style_array = [
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:', 'color:',
+    'color:', 'color:', 'color:'
+  ]
+
+  var displayWidth;
+
+  $(document).ready(function() {
+
+    $('a.transport-icon').on('shown.bs.tab', function (e) {
+      $('a.transport-icon').removeClass("active");
+      $(e.target).addClass("active");
+    });
+
+    $('a.station-icon').on('shown.bs.tab', function (e) {
+      $('a.station-icon').removeClass("active");
+      $(e.target).addClass("active");
+    });
+
+    loadWeather('Queretaro','QRO', false);
+
+    // Vertically align images
+    displayWidth = $(window).width();
+    if(displayWidth > 768) {
+      $('.align-img').each(function() {
+        verticalAlignImages(this);
+      });
+    }
+
+    $(window).on('resize', function() {
+      displayWidth = $(window).width();
+      if(displayWidth > 768) {
+        $('.align-img').each(function() {
+          verticalAlignImages(this);
+        });
+      }
+    });
+
+  });
+
+  function loadWeather(location, woeid, button){
+    $.simpleWeather({
+        location: location,
+        woeid: woeid,
+        unit: 'c',
+        success: function(weather) {
+          $('#icon_weather_container').html(
+              '<i class="ss-icon '+icon_class_array[weather.code]+'" style="'+icon_style_array[weather.code]+'"></i>'
+          );
+        },
+    });
+  }
+
+  function verticalAlignImages(container) {
+    $(container).css('height', '0px');
+    var parent = $(container).parent();
+    var parentHeight = $(parent).height();
+    $(container).css({
+      'height': parentHeight + "px",
+      'display': 'table-cell',
+      'vertical-align': 'middle',
+      'float': 'none'
+    });
+  }
+</script>
+{% endblock %}

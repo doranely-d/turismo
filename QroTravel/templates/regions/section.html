@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block site_meta %}
+<meta name="description" content="{% firstof section.meta_description CONFIGURATION.meta_description %}">
+<meta name="keywords" content="{% firstof section.meta_keywords CONFIGURATION.meta_keywords %}">
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+  .generic-article-map iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="page-banner">
+    <div class="banner-content">
+      <div class="image-container main-banner-image" style="background-image: url('{{ section.get_banner_image_url }}');">
+        <div class="filter"></div>
+      </div>
+      <div class="banner-title-container container text-center">
+        <div class="table">
+          <div class="table-cell">
+            <h1 class="banner-title white font-bold">{{ section.title }}</h1>
+            <h2 class="text">{{ section.sub_heading|safe }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-content generic-article">
+
+
+      <div class="generic-article-content">
+        <p class="text">{{ section.sub_title|safe }}</p>
+        <p>
+           {{ section.content|safe }}
+        </p>
+      </div>
+
+      {% if section.section_photos.exists %}
+      <div class="generic-article-carousel-container">
+        <div class="generic-article-carousel owl-carousel">
+          {% for photo in section.section_photos.all %}
+          <div class="slider" style="background-image: url('{{ photo.get_image_url }}');">
+            <img class="hidden" src="{{ photo.get_image_url }}" alt="{{ photo.alt_text }}">
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="generic-article-carousel-controls">
+          <i class="qro-travel-icon-forward go-right"></i>
+          <i class="qro-travel-icon-backward go-left"></i>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="generic-article-contact">
+        <p class="subtitle text-center">{% trans 'Contact data'|upper %}</p>
+
+        <div class="table">
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Location' %}</p>
+            <p>{{ section.address|safe }}</p>
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Contact phones' %}</p>
+            {% if section.phone_1 %}
+            <p>T. {{ section.phone_1 }}</p>
+            {% endif %}
+            {% if section.phone_2 %}
+            <p>T. {{ section.phone_2 }}</p>
+            {% endif %}
+            {% if section.phone_3 %}
+            <p>T. {{ section.phone_3 }}</p>
+            {% endif %}
+          </div>
+          <div class="table-cell">
+            <p class="font-bold">{% trans 'Follow this section' %}</p>
+            {% if section.web_site %}
+            <p><a href="{{ section.web_site }}" target="_blank" class="a">{{ section.web_site }}</a></p>
+            {% endif %}
+            {% if section.contact_email %}
+            <p><a class="a">{{ section.contact_email }}</a></p>
+            {% endif %}
+            <p>
+              {% if section.facebook_url %}
+              <a href="{{ section.facebook_url }}" target="_blank" class="qro-travel-icon-fb a social-icon"></a>
+              {% endif %}
+              {% if section.twitter_url %}
+              <a href="{{ section.twitter_url }}" target="_blank" class="qro-travel-icon-twitter a social-icon"></a>
+              {% endif %}
+              {% if section.instagram_url %}
+              <a href="{{ section.instagram_url }}" target="_blank" class="qro-travel-icon-instagram a social-icon"></a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {% if section.google_maps %}
+      <div class="generic-article-map">
+        {{ section.google_maps|safe }}
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  {% if section.section_photos.exists %}
+  var roomCarousel = $('.generic-article-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: false,
+        nav: true,
+        dots: true,
+        autoplay: true,
+        items: 1,
+        mouseDrag: true,
+        touchDrag: true
+    });
+
+    $('.go-left').click(function () {
+        roomCarousel.trigger('prev.owl.carousel');
+    });
+
+    $('.go-right').click(function () {
+        roomCarousel.trigger('next.owl.carousel');
+    });
+    {% endif %}
+
+});
+</script>
+{% endblock %}

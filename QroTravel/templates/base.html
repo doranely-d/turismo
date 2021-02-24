@@ -1,0 +1,584 @@
+{% load staticfiles %}
+{% load configuration_tags %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block meta_description %}
+    <meta name="description" content="{{ CONFIGURATION.meta_description }}">
+    <meta name="keywords" content="{{ CONFIGURATION.meta_keywords }}">
+    {% endblock %}
+    <meta name="author" content="Secretaría de Turismo del Estado de Querétaro">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+    <title>{{ 'SITE_NAME'|settings }}{% block title %}{% if title %} - {{ title }}{% endif %}{% endblock %}</title>
+
+    {% block meta_facebook %}<!-- Facebook Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ 'SITE_NAME'|settings }}">
+    <meta property="og:title" content="{% if card.title %}{{ card.title }} - {% endif %}{{ 'SITE_NAME'|settings }}{% if title %} - {{ title }}{% endif %}">
+    <meta property="og:description" content="{{ CONFIGURATION.meta_description }}">
+    <meta property="og:url" content="{{ 'DOMAIN_NAME'|settings }}{% if card.absolute_url %}{{ card.absolute_url }}{% endif %}">
+    {%if card.get_image_url %}<meta property="og:image" content="{{ 'DOMAIN_NAME'|settings }}{{ card.get_image_url }}">{% endif %}
+    <!--  -->
+    <meta property="og:updated_time" content="{% now '' %}">
+    {% endblock %}
+    {% block meta_twitter %}<!-- Twitter Metadata -->
+    <meta property="twitter:card" content="{{ CONFIGURATION.meta_description }}">
+    <meta property="twitter:site" content="{{ 'TWITTER_USERNAME'|settings }}">
+    <meta property="twitter:title" content="{{ 'SITE_NAME'|settings }}{% if title %} - {{ title }}{% endif %}">
+    <meta property="twitter:description" content="{{ CONFIGURATION.meta_description }}">
+    <!-- <meta property="twitter:image" content=""> -->
+    <meta property="twitter:url" content="{{ 'DOMAIN_NAME'|settings }}">
+    {% endblock %}
+
+    <!-- Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+    <!-- Owl carousel -->
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" />
+    <!-- Qro Travel icons -->
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+
+    {% block css %}{% endblock %}
+
+
+    {% if CONFIGURATION.google_analytics %}
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '{{ CONFIGURATION.google_analytics }}', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+    {% endif %}
+
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&key={{ 'GEOPOSITION_GOOGLE_MAPS_API_KEY'|settings }}"></script>
+
+    <!-- Twitter -->
+    <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+    <!-- End Twitter -->
+
+
+
+    {% block js_head %}{% endblock %}
+  </head>
+
+  <body>
+    <div id="some-element"></div>
+    <div id="fb-root"></div>
+    <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8&appId=291419584537812";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- HEADER AND MAIN MENU -->
+    <nav id="mainHeader" class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="header-content">
+          <div class="navbar-header">
+            <a href="/" class="logo-web">
+              <img class="logo" src="{% static 'img/qroTravel.svg' %}" />
+            </a>
+            <a href="/" class="logo-mobile">
+              <img class="logo" src="{% static 'img/qroTravel-1.svg' %}" />
+            </a>
+          </div>
+
+          <div class="title-wrapper">
+            <p>Bienvenido al portal de la <span class="font-bold">Secretaría de Turismo del Estado de Querétaro</span></p>
+          </div>
+		  <div class="title-wrapper">
+              <img class="logo" style="height: 60px; margin-left: 100px; padding:0px !important" src="{% static 'img/logo-SafeTravels.png' %}" />
+          </div>
+        </div>
+
+        <div class="mobile-menu-icon">
+          <i class="mobile-menu-toggle qro-travel-icon-list" data-toggle="offcanvas" data-target="#mobile-menu" data-canvas="body"></i>
+        </div>
+
+        <div class="top-menu">
+          <ul class="secondary-menu navbar-nav">
+            {% if CONFIGURATION.promotions %}
+            <li>
+              <a href="{{ CONFIGURATION.promotions }}" target="_blank">{% trans 'Promotions' %}</a>
+            </li>
+            {% endif %}
+            {% if CONFIGURATION.reserve %}
+            <li>
+              <a href="{{ CONFIGURATION.reserve }}" target="_blank">{% trans 'Booking' %}</a>
+            </li>
+            {% endif %}
+            {% if CONFIGURATION.occ %}
+            <li>
+              <a href="{{ CONFIGURATION.occ }}" target="_blank">{% trans 'OCC' %}</a>
+            </li>
+            {% endif %}
+            <li>
+              <a href="https://www.facebook.com/CAPTA-Quer%C3%A9taro-180504526089159" target="_blank"><img src="https://www.queretaro.travel/static/img/logo-capta.png" border="0" width="100"></a>
+            </li>
+          </ul>
+
+          <div class="search-box">
+            <form action="{% url 'WhatsHot:search' %}" method="get">
+              <input type="text" name="query" />
+              <div class="search-icon">
+                <i class="qro-travel-icon-search search-icon-click"></i>
+              </div>
+            </form>
+          </div>
+        </div>
+		<div class="top-menu" style="top: 50px !important;">
+          <a href="https://qro.experienciasmx.travel/#" target="_blank" class="logo-mobile">
+              <img class="logo" style="height: 30px; margin-left: 100px;" src="{% static 'img/logo-experienciasmx.svg' %}" />
+            </a>        
+        </div> 
+      </div>
+    </nav>
+    <nav id="mainMenu" class="navbar main-menu-wraper navbar-fixed-top">
+      <div class="container">
+
+        <a class="main-menu-logo" href="/">
+          <img class="logo" src="{% static 'img/qroTravel-1.svg' %}" />
+        </a>
+
+        <ul class="navbar-nav main-menu">
+          <li class="dropdown menu-wrapper">
+            <a href="{% url 'Visitor:landing' %}" class="">{% trans 'Querétaro' %}</a>
+            <div class="dropdown-menu">
+              <ul>
+                <li><a href="{% url 'Visitor:visitors_guide' %}">{{ VISITORS_CONFIGURATION.section_name }}</a></li>
+                <!-- <li><a href="#">{% trans 'Galleries' %}</a></li> -->
+              </ul>
+            </div>
+          </li>
+          <li {% if REGIONS %}class="dropdown menu-wrapper"{% endif %}>
+            <a href="{% url 'Regions:landing' %}">{% trans 'Regions' %}</a>
+            {% if REGIONS %}
+            <div class="dropdown-menu">
+              <ul>
+                {% for region in REGIONS %}
+                <li><a href="{{ region.absolute_url }}">{{ region.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </li>
+          <li {% if CATEGORIES %}class="dropdown menu-wrapper"{% endif %}>
+            <a href="{% if CATEGORIES %}{{ CATEGORIES.0.absolute_url }}{% endif %}" class="">{% trans 'What to do' %}</a>
+            {% if CATEGORIES %}
+            <div class="dropdown-menu">
+              <ul>
+                {% for category in CATEGORIES %}
+                <li><a href="{{ category.absolute_url }}">{{ category.name }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'Gastronomy:landing' %}" class="">{% trans 'Gastronomy' %}</a>
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'Events:landing' %}?all_events=1" class="">{% trans 'Events' %}</a>
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'Asomarte:landing' %}" class="">{% trans 'Asomarte' %}</a>
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'Blog:categories' %}" class="">{% trans 'Blog' %}</a>
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'FAQ:landing' %}" class="">{% trans 'FAQs' %}</a>
+          </li>
+          <li class="menu-wrapper">
+            <a href="{% url 'CMS:contact' %}" class="">{% trans 'Contact' %}</a>
+          </li>
+        </ul>
+
+        <div class="select-style">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            <form action="{% url 'set_language' %}" id="language_form" method="post">
+              {% csrf_token %}
+              <select id="blueprints-select" class="language-select" name="language">
+                {% for language in languages %}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>{{ language.code|upper }}</option>
+                {% endfor %}
+              </select>
+            </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MENU INFO BAR -->
+  <nav id="menu-info-bar" class="menu-info-bar navbar-fixed-top">
+    <div class="container">
+      <div class="menu-info-bar-content">
+        <div class="date menu-info-bar-item">
+          <p>{% now "D. d.m.y" %}</p>
+        </div>
+        <div class="forecast menu-info-bar-item">
+          <p>{{ CONFIGURATION.min_temp }}º min</p>
+          <p>{{ CONFIGURATION.max_temp }}º max</p>
+          <p><img style="height: 20px;" src="https://openweathermap.org/img/w/{{ CONFIGURATION.get_weather_icon }}.png" /></p>
+          <p>Santiago de Querétaro, Qro.</p>
+        </div>
+
+        <div class="utilities">
+          <div class="search-utility" style="display: none;">
+            <form action="{% url 'WhatsHot:search' %}" method="get" id="utility-search-form">
+              <input type="text" name="query" placeholder="Ingresa aquí tu búsqueda"/>
+              <div class="search-icon">
+                <a class="qro-travel-icon-search search-icon search-icon-click"></a>
+              </div>
+            </form>
+          </div>
+
+          <div class="social-icons">
+            {% if CONFIGURATION.instagram_url %}
+            <a class="a social" href="{{ CONFIGURATION.instagram_url }}" target="_blank" title="Instagram"><i class="qro-travel-icon-instagram"></i></a>
+            {% endif %}
+            {% if CONFIGURATION.facebook_url %}
+            <a class="a social" href="{{ CONFIGURATION.facebook_url }}" target="_blank" title="Facebook"><i class="qro-travel-icon-fb"></i></a>
+            {% endif %}
+            {% if CONFIGURATION.twitter_url %}
+            <a class="a social" href="{{ CONFIGURATION.twitter_url }}" target="_blank" title="Twitter"><i class="qro-travel-icon-twitter"></i></a>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="navbar-fixed-top" role="navigation">
+      <nav style="display: none;">
+        <div class="title-wrapper-mobile">
+          <a class="mobile-menu-toggle qro-travel-icon-close close-icon"></a>
+          <p class="title">Bienvenido al portal de la<br><span class="font-bold">Secretaría de Turismo del Estado de Querétaro</span></p>
+        </div>
+
+        <div class="search-box">
+          <form action="{% url 'WhatsHot:search' %}" method="get">
+            <input type="text" name="query" />
+            <div class="search-icon">
+              <i class="qro-travel-icon-search search-icon-click"></i>
+            </div>
+          </form>
+        </div>
+
+        <div class="mobile-menu-content">
+
+          <div class="select-style">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              <form action="{% url 'set_language' %}" id="language_form" method="post">
+                {% csrf_token %}
+                <select id="blueprints-select" class="language-select" name="language">
+                  {% for language in languages %}
+                  <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>{{ language.code|upper }}</option>
+                  {% endfor %}
+                </select>
+              </form>
+          </div>
+
+          <div class="menu-list">
+
+            <ul class="navbar-nav main-menu">
+              <li class="dropdown">
+                <div class="menu-wrapper">
+                  <i class="qro-travel-icon-arrowdown dropdown-icon"></i>
+                  <a href="{% url 'Visitor:landing' %}" class="">{% trans 'Querétaro' %}</a>
+                </div>
+                <div class="dropdown-menu mobile-submenu">
+                  <ul>
+                    <li><a href="{% url 'Visitor:visitors_guide' %}">{{ VISITORS_CONFIGURATION.section_name }}</a></li>
+                    <!-- <li><a href="#">{% trans 'Galleries' %}</a></li> -->
+                  </ul>
+                </div>
+              </li>
+              <li {% if REGIONS %}class="dropdown"{% endif %}>
+                <div class="menu-wrapper">
+                  <i class="qro-travel-icon-arrowdown dropdown-icon"></i>
+                  <a href="{% url 'Regions:landing' %}">{% trans 'Regions' %}</a>
+                </div>
+                {% if REGIONS %}
+                <div class="dropdown-menu mobile-submenu">
+                  <ul>
+                    {% for region in REGIONS %}
+                    <li><a href="{{ region.absolute_url }}">{{ region.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+              </li>
+              <li {% if CATEGORIES %}class="dropdown"{% endif %}>
+
+                <div class="menu-wrapper">
+                  <i class="qro-travel-icon-arrowdown dropdown-icon"></i>
+                  <a href="{% if CATEGORIES %}{{ CATEGORIES.0.absolute_url }}{% endif %}" class="">{% trans 'What to do' %}</a>
+                </div>
+                {% if CATEGORIES %}
+                <div class="dropdown-menu mobile-submenu">
+                  <ul>
+                    {% for category in CATEGORIES %}
+                    <li><a href="{{ category.absolute_url }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'Gastronomy:landing' %}" class="">{% trans 'Gastronomy' %}</a>
+                </div>
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'Events:landing' %}?all_events=1" class="">{% trans 'Events' %}</a>
+                </div>
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'Asomarte:landing' %}" class="">{% trans 'Asomarte' %}</a>
+                </div>
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'Blog:categories' %}" class="">{% trans 'Blog' %}</a>
+                </div>
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'FAQ:landing' %}" class="">{% trans 'FAQs' %}</a>
+                </div>
+              </li>
+              <li>
+                <div class="menu-wrapper">
+                  <a href="{% url 'CMS:contact' %}" class="">{% trans 'Contact' %}</a>
+                </div>
+              </li>
+            </ul>
+
+            <div class="social-icons">
+              {% if CONFIGURATION.instagram_url %}
+              <a class="a social" href="{{ CONFIGURATION.instagram_url }}" target="_blank" title="Instagram" style="margin-left: 20px;"><i class="qro-travel-icon-instagram"></i></a>
+              {% endif %}
+              {% if CONFIGURATION.facebook_url %}
+              <a class="a social" href="{{ CONFIGURATION.facebook_url }}" target="_blank" title="Facebook" style="margin-left: 20px;"><i class="qro-travel-icon-fb"></i></a>
+              {% endif %}
+              {% if CONFIGURATION.twitter_url %}
+              <a class="a social" href="{{ CONFIGURATION.twitter_url }}" target="_blank" title="Twitter" style="margin-left: 20px;"><i class="qro-travel-icon-twitter"></i></a>
+              {% endif %}
+            </div>
+
+          </div>
+
+        </div>
+
+      </nav>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+
+      <div class="footer-image-container">
+        <div class="container">
+          <img class="img-responsive footer-image" src="{% static 'img/footer.svg' %}" />
+        </div>
+      </div>
+
+      {% if EXTERNAL_LINKS %}
+      <div class="external-links">
+        <div class="container white-bg">
+          <div class="row">
+            {% for link in EXTERNAL_LINKS %}
+            <a class="external-link" {% if link.url %}href="{{ link.url }}" target="_blank"{% endif %}>
+              <img src="{{ link.get_image_url }}" />
+            </a>
+            {% if forloop.counter|divisibleby:"6" and not forloop.last %}
+          </div>
+          <div class="row" style="margin-top: 25px !important;">
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="qro-travel-footer">
+        <div class="container white-bg">
+          <div class="footer-content">
+
+
+            {% for menu in FOOTER_MENUS %}
+            <div class="col">
+              <ul>
+                <li class="footer-section">{% if menu.link %}<a href="{{ menu.link }}">{% endif %}{{ menu.title|title }}{% if menu.link %}</a>{% endif %}</li>
+                {% if menu.sublinks.exists %}
+                {% for sublink in menu.sublinks.all %}
+                <li><a href="{{ sublink.link }}" {% if sublink.new_window %}target="_blank"{% endif %}>{{ sublink.title|title }}</a></li>
+                {% endfor %}
+                {% endif %}
+              </ul>
+            </div>
+            {% endfor %}
+
+
+            <div class="logo">
+              <img src="{% static 'img/qroTravel-2.svg' %}" />
+              <a href="{% url 'Configuration:privacy_policy' %}">{% trans 'Privacy policy' %}</a><br />
+              <a href="{% url 'Configuration:transparency' %}">{% trans 'Transparency' %}</a>
+            </div>
+          </div>
+          <div class="footer-content-sm">
+          {% if CONFIGURATION.has_social_urls %}
+            {% if CONFIGURATION.instagram_url %}<a href="{{ CONFIGURATION.instagram_url }}" target="_blank" title="Instagram"><i class="qro-travel-icon-instagram social-icon"></i></a>{% endif %}
+            {% if CONFIGURATION.twitter_url %}<a href="{{ CONFIGURATION.twitter_url }}" target="_blank" title="Twitter"><i class="qro-travel-icon-fb social-icon"></i></a>{% endif %}
+            {% if CONFIGURATION.facebook_url %}<a href="{{ CONFIGURATION.facebook_url }}" target="_blank" title="Facebook"><i class="qro-travel-icon-twitter social-icon"></i></a>{% endif %}
+          {% endif %}
+          {% if CONFIGURATION.contact_email %}
+          <br><a href="mailto:{{ CONFIGURATION.contact_email }}" title="Mail">{{ CONFIGURATION.contact_email }}</a>
+          {% endif %}
+          <br><a href="{% url 'Configuration:privacy_policy' %}">{% trans 'Privacy policy' %}</a>
+          <br><a href="{% url 'Configuration:transparency' %}">{% trans 'Transparency' %}</a>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+    <!-- Core JavaScript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Owl carousel -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block js %}{% endblock %}
+    <script type="text/javascript">
+
+      var currMobileSubmenu;
+
+      $(document).ready(function() {
+
+        $('select.language-select').change(function(evt) {
+          $(this).closest('form').submit();
+        });
+
+        $('.search-icon-click').on('touch', function(){
+          $(this).parent().parent().submit();
+        });
+
+        $('.search-icon-click').on('click', function(){
+          $(this).parent().parent().submit();
+        });
+
+        $('#blueprints-select').on('change', function() {
+          $('#language_form').submit();
+        });
+
+        // Nav collapse
+        $('#mainHeader').affix({
+          offset: {
+            top: 450
+          }
+        });
+
+        $('#mainMenu').affix({
+          offset: {
+            top: 450
+          }
+        });
+        $('#menu-info-bar').affix({
+          offset: {
+            top: 450
+          }
+        });
+
+        // mobile menu show / hide function
+        $('.mobile-menu-toggle').on('click', function(){
+
+          if($('#mobile-menu.active').length) {
+            clearTimeout(timeout);
+            $('#mobile-menu nav').fadeToggle();
+            var timeout = setTimeout( function() {
+              $('#mobile-menu').delay(500).removeClass('active');
+            }, 500);
+          } else {
+            $('#mobile-menu').addClass('active');
+            $('#mobile-menu nav').delay(500).fadeToggle();
+          }
+
+        });
+
+        // Activate mobile dropdown menus
+        $('.dropdown-icon').click(function(evt) {
+          var icon = this;
+          evt.preventDefault();
+
+          var newOpenedSubmenu = $(icon).parent('.menu-wrapper').siblings('.dropdown-menu');
+          var isSame = newOpenedSubmenu.is(currMobileSubmenu);
+
+          // Las opened mobile submenu
+          if($(currMobileSubmenu).is(":visible") && !isSame) {
+            $(currMobileSubmenu).slideUp();
+          }
+
+          // Set the new opened mobile submenu
+          currMobileSubmenu = newOpenedSubmenu;
+          $(currMobileSubmenu).slideToggle();
+        });
+
+      });
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e66c37c46d19278"></script>
+    <!-- Magnific Popup core JS file -->
+    <script src="{% static 'js/magnificpopup.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('.image-link').magnificPopup({type:'image'});
+
+
+          $('#popCorona').trigger('click');
+        });
+    </script>
+    <a class="image-link" href="{% static 'img/BannerSeptiembre.jpg' %}" id="popCorona">Abrir pop</a>
+  </body>
+</html>

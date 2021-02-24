@@ -1,0 +1,42 @@
+{% load i18n %}
+
+{% for card in list_items %}
+<div class="activity-container">
+  <p class="banner-subtitle font-bold">{{ card.title|upper }}</p>
+  <div class="row">
+    <a href="{% if card.link %}{{ card.link }}{% else %}{{ card.absolute_url }}{% endif %}" {% if card.link %}target="_blank"{% endif %}>
+      <div class="col-sm-4 col-xs-12 image" style="background-image: url('{{ card.get_image_url }}');"></div>
+    </a>
+    <div class="col-sm-5 col-xs-12 description">
+      <p class="banner-subtitle font-bold">{{ card.subheading|safe }}</p>
+      <p>
+         {{ card.excerpt|safe }}
+      </p>
+    </div>
+    <div class="col-sm-3 col-xs-12 info">
+      <p>{{ card.address|safe }}</p>
+      <p class="font-bold" style="margin-top: 0px; margin-bottom: 0px;">T. {{ card.phone }}</p>
+      <p class="font-bold" style="margin-top: 0px;">{{ card.mail }}</p>
+
+      <a href="{% if card.link %}{{ card.link }}{% else %}{{ card.absolute_url }}{% endif %}" {% if card.link %}target="_blank"{% endif %} class="btn btn-default" style="font-size: 14px;">
+        {% if card.button_text %}
+        {{ card.button_text }}
+        {% else %}
+        {% trans 'View more details' %}
+        {% endif %}
+      </a>
+    </div>
+  </div>
+</div>
+{% empty %}
+{% trans 'No results found' %}
+{% endfor %}
+
+{% if list_items.has_next %}
+<div id="ajax-results" style="text-align:center;">
+  <form>
+  <br />
+  <div class="clearfix"></div>
+  <a class="btn btn-default next-page" href="{{ href }}?page={{ list_items.next_page_number }}">{% trans 'Load more' %}</a>
+</div>
+{% endif %}
